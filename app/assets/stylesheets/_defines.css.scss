@@ -1,0 +1,81 @@
+@mixin rounded_all($radius: 10px){
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+@mixin rounded($side, $radius: 10px) {
+  border-#{$side}-radius: $radius;
+  -moz-border-radius-#{$side}: $radius;
+  -webkit-border-#{$side}-radius: $radius;
+}
+
+@mixin box_shadow($horiz_offset, $vert_offset, $blur_radius, $color){
+  -webkit-box-shadow: $horiz_offset $vert_offset $blur_radius $color;
+  -moz-box-shadow: $horiz_offset $vert_offset $blur_radius $color;
+  box-shadow: $horiz_offset $vert_offset $blur_radius $color;
+}
+
+@mixin inner_shadow($horiz_offset, $vert_offset, $blur_radius, $color){
+  -webkit-box-shadow: inset $horiz_offset $vert_offset $blur_radius $color;
+  -moz-box-shadow: inset $horiz_offset $vert_offset $blur_radius $color;
+  box-shadow: inset $horiz_offset $vert_offset $blur_radius $color;
+}
+
+// std colors
+$text_color: #334;
+$link_color: #900;
+$tab_link_color:  #567;
+$contextual_menu_link_color: #BBA;
+$record_control_link_color: #459;
+$form_element_border_color: #999999;
+$record_row_odd_background_color: rgb(225, 229, 235);
+$record_row_even_background_color: white;
+$record_row_odd_background_sorted_color: rgb(195, 213, 244);
+$record_row_even_background_sorted_color: white;
+
+// determines width of flowing elements in form, too (eg, div, p, etc)
+$wysiwyg_editor_width: 800px;
+
+$text_hiliter_green_color: #47fb51;
+$text_hiliter_blue_color: #90C0ff;
+$text_hiliter_magenta_color: #eb4feb;
+$text_hiliter_yellow_color: #ffff20;
+
+
+// templates
+@mixin form-element-border($y){
+  border: 1px solid $form_element_border_color;
+  border-top-color: $form_element_border_color * 1.25;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -webkit-box-shadow: 0 $y 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 $y 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 $y 2px rgba(0, 0, 0, 0.2);
+}
+
+@mixin mac-btn{
+  padding: 0.4ex 1.2ex;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  background: #ddd url(../images/btn_gradient.png) top repeat-x;
+  -moz-border-radius: 14px;
+  -webkit-border-radius: 14px;
+  border: 1px solid #bbb;
+
+  &:hover{
+    color: #222;
+    background-color: #76b3ff;
+    border-color: #99a;
+    text-shadow: white 0 -1 5px;
+  }
+  
+  &:active{
+    color: black;
+    background-color: #76bef6;
+    border-color: #556;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    text-shadow: white 0 0 3px;
+  }
+}

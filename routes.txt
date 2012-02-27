@@ -1,0 +1,39 @@
+            home_index GET    /home/index(.:format)                  {:controller=>"home", :action=>"index"}
+                  root        /                                      {:controller=>"home", :action=>"index"}
+                people GET    /people(.:format)                      {:action=>"index", :controller=>"people"}
+                       POST   /people(.:format)                      {:action=>"create", :controller=>"people"}
+            new_person GET    /people/new(.:format)                  {:action=>"new", :controller=>"people"}
+           edit_person GET    /people/:id/edit(.:format)             {:action=>"edit", :controller=>"people"}
+                person GET    /people/:id(.:format)                  {:action=>"show", :controller=>"people"}
+                       PUT    /people/:id(.:format)                  {:action=>"update", :controller=>"people"}
+                       DELETE /people/:id(.:format)                  {:action=>"destroy", :controller=>"people"}
+                 posts GET    /posts(.:format)                       {:action=>"index", :controller=>"posts"}
+                       POST   /posts(.:format)                       {:action=>"create", :controller=>"posts"}
+              new_post GET    /posts/new(.:format)                   {:action=>"new", :controller=>"posts"}
+             edit_post GET    /posts/:id/edit(.:format)              {:action=>"edit", :controller=>"posts"}
+                  post GET    /posts/:id(.:format)                   {:action=>"show", :controller=>"posts"}
+                       PUT    /posts/:id(.:format)                   {:action=>"update", :controller=>"posts"}
+                       DELETE /posts/:id(.:format)                   {:action=>"destroy", :controller=>"posts"}
+           media_index GET    /media(.:format)                       {:action=>"index", :controller=>"media"}
+                       POST   /media(.:format)                       {:action=>"create", :controller=>"media"}
+             new_media GET    /media/new(.:format)                   {:action=>"new", :controller=>"media"}
+            edit_media GET    /media/:id/edit(.:format)              {:action=>"edit", :controller=>"media"}
+                 media GET    /media/:id(.:format)                   {:action=>"show", :controller=>"media"}
+                       PUT    /media/:id(.:format)                   {:action=>"update", :controller=>"media"}
+                       DELETE /media/:id(.:format)                   {:action=>"destroy", :controller=>"media"}
+       authentications GET    /authentications(.:format)             {:action=>"index", :controller=>"authentications"}
+                       POST   /authentications(.:format)             {:action=>"create", :controller=>"authentications"}
+    new_authentication GET    /authentications/new(.:format)         {:action=>"new", :controller=>"authentications"}
+   edit_authentication GET    /authentications/:id/edit(.:format)    {:action=>"edit", :controller=>"authentications"}
+        authentication GET    /authentications/:id(.:format)         {:action=>"show", :controller=>"authentications"}
+                       PUT    /authentications/:id(.:format)         {:action=>"update", :controller=>"authentications"}
+                       DELETE /authentications/:id(.:format)         {:action=>"destroy", :controller=>"authentications"}
+user_omniauth_callback        /users/auth/:action/callback(.:format) {:action=>/ldap/, :controller=>"omniauth_callbacks"}
+        user_dashboard GET    /users/:user_id/dashboard(.:format)    {:action=>"dashboard", :controller=>"users"}
+                 users GET    /users(.:format)                       {:action=>"index", :controller=>"users"}
+                       POST   /users(.:format)                       {:action=>"create", :controller=>"users"}
+              new_user GET    /users/new(.:format)                   {:action=>"new", :controller=>"users"}
+             edit_user GET    /users/:id/edit(.:format)              {:action=>"edit", :controller=>"users"}
+                  user GET    /users/:id(.:format)                   {:action=>"show", :controller=>"users"}
+                       PUT    /users/:id(.:format)                   {:action=>"update", :controller=>"users"}
+                       DELETE /users/:id(.:format)                   {:action=>"destroy", :controller=>"users"}

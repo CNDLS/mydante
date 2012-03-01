@@ -5,14 +5,25 @@
 
 @import "defines";
 
-.auth_provider img{
-  display: block;
+ul#auth_list{
+  list-style-type: none;
 }
 
-.auth_provider{
-  float: left;
-  text-decoration: none;
-  margin-right: 24px;
-  text-align: center;
-  margin-bottom: 10px;
-}
+  li{
+  
+    &.ldap{
+      list-style-image: image-url("ldap_32.png")
+    }
+    
+    &.shibboleth{
+      list-style-image: image-url("shibboleth_32.png")
+    }
+
+    a{
+      text-decoration: none;
+      display: block;
+      line-height: 2em;
+      vertical-align: top;
+    }
+
+  }

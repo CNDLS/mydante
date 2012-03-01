@@ -1,0 +1,21 @@
+!!! 5
+- UIHelper::UI.build(self)
+
+%html
+  %head
+    %title Proust
+    / styles
+    = stylesheet_link_tag("application")
+    / scripts
+    = javascript_include_tag("application")
+    / other
+    = csrf_meta_tags
+    = yield :head
+
+%body
+  = yield :header
+  #page
+    = yield :messages
+    = yield :navigation
+    = yield # page content
+    = yield :footer

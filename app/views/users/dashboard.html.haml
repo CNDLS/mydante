@@ -1,1 +1,7 @@
-Hey
+%h1
+  = "#{@user.name.possessive} Dashboard"
+- if flash.empty?
+  .messages.empty 
+- else
+  .messages= flash_output
+#menu

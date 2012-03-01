@@ -1,14 +1,28 @@
-@mixin rounded_all($radius: 10px){
-  border-radius: $radius;
-  -moz-border-radius: $radius;
-  -webkit-border-radius: $radius;
+
+
+@mixin rounded_corners($size){
+  border-radius: $size;
+  -moz-border-radius: $size;
+  -webkit-border-radius: $size;
 }
 
-@mixin rounded($side, $radius: 10px) {
-  border-#{$side}-radius: $radius;
-  -moz-border-radius-#{$side}: $radius;
-  -webkit-border-#{$side}-radius: $radius;
+@mixin rounded_top_corners($size){
+  -moz-border-radius-toptopleft: $size;
+  -moz-border-radius-topright: $size;
+  -webkit-border-top-left-radius: $size;
+  -webkit-border-top-right-radius: $size;
+  -border-top-left-radius: $size;
+  -border-top-right-radius: $size;
 }
+
+@mixin rounded_bottom_corners($size){
+  -moz-border-radius-bottomleft: $size;
+  -moz-border-radius-bottomright: $size;
+  -webkit-border-bottom-left-radius: $size;
+  -webkit-border-bottom-right-radius: $size;
+  -border-bottom-left-radius: $size;
+  -border-bottom-right-radius: $size;
+} 
 
 @mixin box_shadow($horiz_offset, $vert_offset, $blur_radius, $color){
   -webkit-box-shadow: $horiz_offset $vert_offset $blur_radius $color;
@@ -43,7 +57,10 @@ $text_hiliter_magenta_color: #eb4feb;
 $text_hiliter_yellow_color: #ffff20;
 
 
-// templates
+//
+// functions for common customizations
+//
+
 @mixin form-element-border($y){
   border: 1px solid $form_element_border_color;
   border-top-color: $form_element_border_color * 1.25;
@@ -78,4 +95,19 @@ $text_hiliter_yellow_color: #ffff20;
     -moz-box-shadow: none;
     text-shadow: white 0 0 3px;
   }
+}
+
+
+//
+// workhorse classes
+//
+
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}
+.clear{
+  clear: both;
 }

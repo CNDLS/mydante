@@ -1,0 +1,18 @@
+%h3
+  Please sign in through one of theses services:
+%ul#auth_list
+  -#:ldap, :twitter, :google_apps, :open_id, :facebook, :shibboleth
+  - [:ldap, :shibboleth].each do |provider|
+    - provider_label = provider.to_s.titleize
+
+    - case provider
+    - when :google_apps
+    - when :open_id
+      - provider_label = "OpenID"
+    - when :ldap
+      - provider_label = "Georgetown LDAP"
+      
+    %li{ :class => provider }
+      %a{ :href => user_omniauth_authorize_path(provider) }  
+        =provider_label
+      .clear

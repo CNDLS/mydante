@@ -22,7 +22,7 @@ gem 'haml-rails', '~> 0.3.4'
 gem 'kaminari' #, '~> 0.12.4'
 gem 'mysql', "~> 2.8.1"
 gem 'omniauth', '~> 1.0.2'
-# gem "oa-oauth", :require => "omniauth/oauth"
+gem "oa-oauth", :require => "omniauth/oauth"
 gem "oa-enterprise", "~> 0.3.2"
 gem "omniauth-shibboleth", "~> 1.0.4"
 gem 'paperclip', '~> 2.4.5'

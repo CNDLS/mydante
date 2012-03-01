@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   
   belongs_to :person
   
-  def self.find_for_ldap_oauth(auth, current_user)
+  def self.find_for_ldap(auth, current_user)
     user = self.find_or_initialize_by_username(uid_from_auth(auth))
     if user.id.nil?
       user.person = Person.create :first_name => eval(auth.user_info.first_name).first,
@@ -35,6 +35,16 @@ class User < ActiveRecord::Base
       uid = uid.sub(",", "")
       return uid if not uid.empty?
     end
+  end
+  
+  
+  def self.find_for_shibboleth(auth)
+    p auth.inspect
+  end
+  
+  
+  def name
+    person.name
   end
   
 end

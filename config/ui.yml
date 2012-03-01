@@ -1,0 +1,12 @@
+--- !ruby/object:UIHelper::UI 
+header: ~ 
+footer: ~ 
+navigation: 
+  - !ruby/object:UIHelper::Menubar 
+    name: Main 
+    menus: 
+    - !ruby/object:UIHelper::Menu 
+      name: Combray
+      items: !ruby/object:UIHelper::MenuItemsFromFilesFactory 
+        base_filename: swann_pg
+        directory: texts/combray

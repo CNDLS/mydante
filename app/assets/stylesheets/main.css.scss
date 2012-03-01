@@ -1,0 +1,96 @@
+// application-wide styles
+@import "defines";
+
+body{
+  margin: -1em 0 0 0;
+  text-align: center;
+  font-family: Tahoma, Geneva, Helvetica, Arial, sans-serif;
+  font-size: 9pt;
+  overflow{
+    x: hidden;
+    y: scroll;
+  }
+  
+  background: {
+    color: transparent;
+    image: url(image-path('background.jpg'));
+    position: top left;
+    repeat: repeat-x;
+    overflow: scroll;
+  }
+  
+  a{    
+    color: $link_color;
+    text-decoration: none;
+
+    &:hover{
+      color: lighten($link_color, 15%);
+    }
+  }
+}
+
+#powered_by_cndls{
+  background: {
+    image: url(image-path('cndls_frame-bg.png'));
+    position: top left;
+    repeat: repeat-x;
+  }
+  display: block;
+  height: 26px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+
+	a{
+	  background: {
+	    image: url(image-path('cndls_frame-button3.png'));
+      position: top left;
+      repeat: repeat-x;
+    }
+	  display: block;
+	  height: 50px;
+	  width: 198px;
+	  position: absolute;
+	  top: 0;
+	  left: 800px;
+	  text-indent: -9999px;
+	}
+}
+
+
+//
+// page
+//
+
+#page{
+  padding: 1em;
+  width: 1000px;
+  margin: 0 auto;
+  text-align: left;
+  border-bottom: 1px solid #aaa;
+  background: {
+    color: white;
+    image: url(image-path('bottom_gradient.png'));
+    position: bottom;
+    repeat: repeat-x;
+  }
+  @include rounded_bottom_corners(12px);
+  @include box_shadow(0, 5px, 15px, rgba(0, 0, 0, 0.5));
+}
+
+
+//
+// footer
+//
+
+#footer{
+  border-top: 1px dashed #aaa;
+  padding-top: 20px;
+  font-size: 0.8em;
+  margin: 0;
+  
+  img{
+    display: block;
+  }
+}

@@ -1,7 +1,9 @@
+
+- UIHelper::UI.build(self)
+
 %h1
-  = "#{@user.name.possessive} Dashboard"
-- if flash.empty?
-  .messages.empty 
-- else
-  .messages= flash_output
-#menu
+  = "#{@user.name.possessive} Dashboard"  
+= yield :messages
+= yield :navigation
+- # page content
+= yield :footer

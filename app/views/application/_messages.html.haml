@@ -1,2 +1,4 @@
-%p.notice= notice
-%p.alert= alert
+- if flash.empty?
+.messages.empty 
+- else
+.messages= flash_output

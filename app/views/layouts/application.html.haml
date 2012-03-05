@@ -1,5 +1,4 @@
 !!! 5
-- UIHelper::UI.build(self)
 
 %html
   %head
@@ -14,8 +13,4 @@
 
 %body
   = yield :header
-  #page
-    = yield :messages
-    = yield :navigation
-    = yield # page content
-    = yield :footer
+  #page= yield

@@ -35,6 +35,12 @@ module UiHelper
   
   class YAMLConfig
     # refers back to the source file for whatever YAML config supplied all the attrs.
+    
+    def to_hash
+      hash = {}
+      instance_variables.each {|var| hash[var.to_s.delete("@").to_sym] = instance_variable_get(var) }
+      hash
+    end
   end
   
   
@@ -51,23 +57,29 @@ module UiHelper
           
           ui_section_config = Proust::Application.config.ui.send(ui_section)
           ui_section_config = [ui_section_config] unless ui_section_config.is_a? Array
-          p ui_section_config.inspect
           
           ui_section_config.each do |config|
             # get any config variables
             begin
-              attrs = (config.is_a? YAMLConfig) ? config.to_hash : {}
-              ui_section_partial_name = (config.is_a? YAMLConfig) ? config.class.name.underscore : ui_section
+              if (config.is_a? YAMLConfig)
+                attrs = config.to_hash
+                ui_section_partial_name = config.class.name.split('::').last.underscore
+              else
+                attrs = {}
+                ui_section_partial_name = ui_section
+              end
             rescue
               ui_section_partial_name = ui_section
             end
           
             # render any applicable partial templates
             begin
-              @context.render :partial => "application/#{ui_section_partial_name}", :locals => attrs
+              "aaaa"
+              # @context.render :partial => "application/#{ui_section_partial_name}", :locals => attrs
+            rescue ActionView::MissingTemplate => mte
+              p "no partial template at application/#{ui_section_partial_name}"
             rescue Exception => e
               p e.inspect
-              ""
             end
           end
           

@@ -1,6 +1,8 @@
---- !ruby/object:UIHelper::UI 
+--- !ruby/object:UI 
 header: ~ 
 footer: ~ 
+page_header: ~
+page_footer: ~
 navigation: 
   - !ruby/object:UIHelper::Menubar 
     name: Main 
@@ -10,3 +12,9 @@ navigation:
       items: !ruby/object:UIHelper::MenuItemsFromFilesFactory 
         base_filename: swann_pg
         directory: texts/combray
+    - !ruby/object:UIHelper::Menu 
+      name: Features
+      items:
+      - !ruby/object:UIHelper::MenuItem
+        - name: Journal
+        - href: journal_path(current_user.id)

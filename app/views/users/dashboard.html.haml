@@ -1,9 +1,8 @@
-
-- UIHelper::UI.build(self)
+- Proust::Application.config.ui.build(self, :navigation, :page_footer)
 
 %h1
-  = "#{@user.name.possessive} Dashboard"  
+  = "#{@user.name.possessive} Dashboard"
 = yield :messages
 = yield :navigation
-- # page content
-= yield :footer
+/ page stuff
+= yield :page_footer

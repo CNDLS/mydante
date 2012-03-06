@@ -1,2 +1,8 @@
-#menubar
-  Menubar
+.menubar
+  / - menus.each do |menu|
+  /   - if menu.respond_to? :render
+  /     = menu.render
+  /   - elsif menu.respond_to? :href
+  /     = link_to menu.name, menu.href
+  /   - else
+  /     = "Can't render menu: #{menu.inspect}"

@@ -1,4 +1,4 @@
---- !ruby/object:UI 
+--- !ruby/object:UIHelper::UI 
 header: ~ 
 footer: ~ 
 page_header: ~
@@ -15,6 +15,9 @@ navigation:
     - !ruby/object:UIHelper::Menu 
       name: Features
       items:
-      - !ruby/object:UIHelper::MenuItem
-        - name: Journal
-        - href: journal_path(current_user.id)
+        -
+          name: Journal
+          href: user_journal_path(current_user.id)
+        -
+          name: Discussion Board
+          href: user_discussion_path(current_user.id)

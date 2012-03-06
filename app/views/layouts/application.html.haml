@@ -1,5 +1,5 @@
 !!! 5
-- Proust::Application.config.ui.build(self, :header)
+- Proust::Application.config.ui.build(self, :header, :page_header, :navigation, :page_footer)
 
 %html
   %head
@@ -14,4 +14,10 @@
 
 %body
   = yield :header
-  #page= yield
+  %section#page
+    = yield :page_header
+    = yield :messages
+    = yield :navigation
+    %article#page_contents
+      = yield
+    = yield :page_footer

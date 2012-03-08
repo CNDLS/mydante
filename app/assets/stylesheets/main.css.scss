@@ -1,8 +1,10 @@
 // application-wide styles
 @import "defines";
 
+/* sizes are based on a font-size of 16px, so 0.0625em = 1px */
+
 body{
-  margin: -1em 0 0 0;
+  margin: -0.75em 0 0 0;
   text-align: center;
   font-family: Tahoma, Geneva, Helvetica, Arial, sans-serif;
   overflow{
@@ -28,6 +30,7 @@ body{
   }
 }
 
+/* powered by cndls section doesn't scale. use px sizes. */
 #powered_by_cndls{
   background: {
     image: url(image-path('cndls_frame-bg.png'));
@@ -59,56 +62,144 @@ body{
 
 
 //
-// page_header
-//
-
-#page_header{
-  #banner{
-    width: 100%;
-    height: 216px;
-    background: {
-      image: url(image-path('proust_banner.jpg'));
-    }
-  }
-}
-
-
-//
 // page
 //
 
 #page{
-  padding: 1em 0;
-  width: 1000px;
+  padding: 1.25em 0 0 0;
+  width: 62.5em;
   margin: 0 auto;
   text-align: left;
-  border-bottom: 1px solid #aaa;
+  border-left: 1px solid #888;
+  border-right: 1px solid #888;
+  border-bottom: 1px solid #555;
   background: {
-    color: white;
-    image: url(image-path('bottom_gradient.png'));
-    position: bottom;
-    repeat: repeat-x;
+    color: #eee;
   }
-  @include rounded_bottom_corners(12px);
-  @include box_shadow(0, 5px, 15px, rgba(0, 0, 0, 0.5));
+  @include rounded_bottom_corners(1em);
+  @include straight_down_shadow;
   
-  #page_contents {
-    padding: 1em;
+
+  #page_header{
+    #banner{
+      width: 100%;
+      height: 13.5em;
+      background: {
+        image: url(image-path('proust_banner.jpg'));
+        size: cover;
+      }
+      border-bottom: 0.5625em solid #222;
+    }
   }
-}
-
-
-//
-// page_footer
-//
-
-#page_footer{
-  border-top: 1px dashed #aaa;
-  padding-top: 20px;
-  font-size: 0.8em;
-  margin: 2em;
   
-  img{
-    display: block;
+  
+  ul.menubar {
+    padding: 0;
+    margin: 0;
+    border-bottom: 0.125em solid #222;
+    background: {
+      color: #555;
+      image: url(image-path('menubar/menubar_brushed_bg.png'));
+      repeat: repeat;
+      position: top;
+    } 
+    @include small_straight_down_shadow;
+    list-style: none;
+    text-transform: lowercase;
+    text-align: left;
+    font-size: 1.25em;
+    line-height: 1.25em;
+    letter-spacing: 0.125em;
+    text-shadow: #111 0 -0.0625em 0.0625em;
+    
+    
+    li.menu_btn{
+      display: block;
+      float: left;
+      
+      a{
+        color: white;
+        text-decoration: none;
+        padding: 0 0.5em;
+
+        &.open{
+          text-shadow: rgba(0,0,0,0.8) 0 0.0625em 0.0625em;
+          background: #777;
+        }
+
+        &:hover{
+          color: white;
+          background: rgba(0,0,0,0.125);
+          text-shadow: rgba(255, 255, 255, 0.25) 0 0 0.125em;
+        }
+      }
+    }
+    
+    ul.menu{
+      -webkit-padding-start: 0;
+      list-style: none;
+      text-transform: lowercase;
+      position: absolute;
+      display: none;
+      background: {
+        color: #222;
+        image: url(image-path('contextual_menu_bottom_gradient.png'));
+        repeat: repeat-x;
+        position: bottom;
+      }
+      min-width: 150px;
+      border: 2px solid #111;
+      border-top: none;
+      text-shadow: none;
+      font-size: 1.25em;
+      margin: 0 0.25em;
+      padding-bottom: 0.3125em;
+      z-index: 100;
+      @include rounded_bottom_corners(1em);
+      @include box_shadow(0, 0.25em, 1em, black);
+
+      hr{
+        opacity: 0.1
+      }
+    }
   }
+  
+  
+  #page_container{
+    background: {
+      color: transparent;
+      image: url(image-path('proust_page_bg.jpg'));
+      position: top;
+      repeat: repeat-x;
+    }  
+    @include rounded_bottom_corners(1.25em);
+  
+    #page_contents {
+      padding: 0.1em 1em;
+   
+      h1{
+        margin: none;
+        font-size: 1.5em;
+        font-weight: normal;
+      }
+    }
+  
+  
+    #page_footer{
+      border-top: 0.125em dashed #aaa;
+      padding-top: 1.25em;
+      font-size: 0.8em;
+      margin: 2em;
+      img{
+        display: block;
+      }
+    }
+  
+    #page_bottom{
+      height: 1.75em;
+      @include gradient(rgba(0,0,0,0), rgba(0,0,0,0.35));
+      @include rounded_bottom_corners(0.75em);
+    }
+  }
+  
 }

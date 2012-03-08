@@ -4,11 +4,8 @@
 %html
   %head
     %title Proust
-    / styles
     = stylesheet_link_tag("application")
-    / scripts
     = javascript_include_tag("application")
-    / other
     = csrf_meta_tags
     = yield :head
 
@@ -16,8 +13,10 @@
   = yield :header
   %section#page
     = yield :page_header
-    = yield :messages
-    = yield :navigation
-    %article#page_contents
-      = yield
-    = yield :page_footer
+    = yield :navigation unless controller.is_a? HomeController
+    #page_container
+      = yield :messages
+      %article#page_contents
+        = yield
+      = yield :page_footer
+      #page_bottom

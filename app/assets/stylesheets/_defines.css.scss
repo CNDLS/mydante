@@ -1,4 +1,10 @@
+@mixin small_straight_down_shadow{
+  @include box_shadow(0, 1px, 5px, rgba(0, 0, 0, 0.5));
+}
 
+@mixin straight_down_shadow{
+  @include box_shadow(0, 5px, 15px, rgba(0, 0, 0, 0.5));
+}
 
 @mixin rounded_corners($size){
   border-radius: $size;
@@ -34,6 +40,13 @@
   -webkit-box-shadow: inset $horiz_offset $vert_offset $blur_radius $color;
   -moz-box-shadow: inset $horiz_offset $vert_offset $blur_radius $color;
   box-shadow: inset $horiz_offset $vert_offset $blur_radius $color;
+}
+
+@mixin gradient($first, $second) {
+  background-color: transparent;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$first', endColorstr='$second');
+  background-image: -webkit-gradient(linear, left top, left bottom, from($first), to($second));
+  background-image: -moz-linear-gradient(top,  $first,  $second);
 }
 
 // std colors

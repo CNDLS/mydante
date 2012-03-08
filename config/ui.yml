@@ -1,23 +1,22 @@
---- !ruby/object:UIHelper::UI 
+--- !ruby/object:GuiHelper::UI 
 header: ~ 
 footer: ~ 
 page_header: ~
 page_footer: ~
 navigation: 
-  - !ruby/object:UIHelper::Menubar 
-    name: Main 
-    menus: 
-    - !ruby/object:UIHelper::Menu 
-      name: Combray
-      items: !ruby/object:UIHelper::MenuItemsFromFilesFactory 
-        base_filename: swann_pg
-        directory: texts/combray
-    - !ruby/object:UIHelper::Menu 
-      name: Features
-      items:
-        -
-          name: Journal
-          href: user_journal_path(current_user.id)
-        -
-          name: Discussion Board
-          href: user_discussion_path(current_user.id)
+- !ruby/object:GuiHelper::Menubar 
+  name: Main 
+  menus: 
+  - !ruby/object:GuiHelper::Menu 
+    name: Combray
+    items: 
+    - !ruby/object:GuiHelper::MenuItemsFromFilesFactory 
+      base_filename: swann_pg
+      directory: texts/combray
+  - !ruby/object:GuiHelper::Menu 
+    name: Features
+    items:
+    - name: Journal
+      href: user_journal_path(current_user.id)
+    - name: Discussion Board
+      href: user_discussion_path(current_user.id)

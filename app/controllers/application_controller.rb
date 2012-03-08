@@ -6,7 +6,4 @@ class ApplicationController < ActionController::Base
   # authentication
   # before_filter :authenticate_user!
   
-  # ui
-  helper :ui
-  
 end

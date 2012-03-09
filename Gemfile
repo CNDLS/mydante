@@ -1,31 +1,36 @@
+if RUBY_VERSION =~ /1.9/
+  Encoding.default_external = Encoding::UTF_8
+  Encoding.default_internal = Encoding::UTF_8
+end
+
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.1.1'
+gem 'rails', '~> 3.2.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 
 # gemfile initially composed on 10/25/11 bg.
-gem 'jquery-rails', '~> 1.0.16'
+gem 'jquery-rails', '~> 2.0.1'  #'~> 1.0.16'
 
-gem 'aws-s3' #, '~> 0.6.2'
-gem 'rspec-rails', '>= 2.6.1', :group => [:development, :test]
-gem 'activeadmin' #, '~> 0.3.2'
-gem 'acts-as-taggable-on', '~> 2.1.1'
+# gem 'aws-s3' #, '~> 0.6.2'
+gem 'rspec-rails', '>= 2.8.1', :group => [:development, :test]
+gem 'activeadmin', '~> 0.4.3'
+gem 'acts-as-taggable-on', '~> 2.2.2'
 gem 'cancan', '~> 1.6.7'
 # temp due to bug in devise -- conflicting dependency on bcrypt with sass-rails.
-gem 'devise', '1.4.7' #  git: "https://github.com/plataformatec/devise.git", branch: "master" # '~> 1.4.9'
+gem 'devise', '2.0.4' #'1.4.7' #  git: "https://github.com/plataformatec/devise.git", branch: "master" # '~> 1.4.9'
 gem 'gravatar', '~> 1.0'
-gem 'haml', '~> 3.1.3'
+gem 'haml', '~> 3.1.4'
 gem 'haml-rails', '~> 0.3.4'
-gem 'kaminari' #, '~> 0.12.4'
+gem 'kaminari', '~> 0.13.0'
 gem 'mysql', "~> 2.8.1"
-gem 'omniauth', '~> 1.0.2'
+gem 'omniauth', '~> 1.0.3'
 gem "oa-oauth", :require => "omniauth/oauth"
 gem "oa-enterprise", "~> 0.3.2"
 gem "omniauth-shibboleth", "~> 1.0.4"
-gem 'paperclip', '~> 2.7'
+gem 'paperclip', '~> 2.7.0'
 gem 'tilt', '~> 1.3.3'
 gem 'validates_email_format_of', '~> 1.5.3'
 
@@ -43,9 +48,9 @@ gem 'validates_email_format_of', '~> 1.5.3'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', '~> 3.1.4'
-  gem 'coffee-rails', '~> 3.1.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails', '~> 3.2.4'
+  gem 'coffee-rails', '~> 3.2.2'
+  gem 'uglifier', '>= 1.2.3'
 end
 
 

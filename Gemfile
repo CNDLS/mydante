@@ -25,7 +25,7 @@ gem 'omniauth', '~> 1.0.2'
 gem "oa-oauth", :require => "omniauth/oauth"
 gem "oa-enterprise", "~> 0.3.2"
 gem "omniauth-shibboleth", "~> 1.0.4"
-gem 'paperclip', '~> 2.4.5'
+gem 'paperclip', '~> 2.7'
 gem 'tilt', '~> 1.3.3'
 gem 'validates_email_format_of', '~> 1.5.3'
 

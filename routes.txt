@@ -30,6 +30,7 @@
                        DELETE /authentications/:id(.:format)                 {:action=>"destroy", :controller=>"authentications"}
 user_omniauth_callback        /users/auth/:action/callback(.:format)         {:action=>/ldap|shibboleth/, :controller=>"omniauth_callbacks"}
         user_dashboard GET    /users/:user_id/dashboard(.:format)            {:action=>"dashboard", :controller=>"users"}
+            user_greet GET    /users/:user_id/greet(.:format)                {:action=>"greet", :controller=>"users"}
          user_journals GET    /users/:user_id/journals(.:format)             {:action=>"index", :controller=>"journals"}
                        POST   /users/:user_id/journals(.:format)             {:action=>"create", :controller=>"journals"}
       new_user_journal GET    /users/:user_id/journals/new(.:format)         {:action=>"new", :controller=>"journals"}

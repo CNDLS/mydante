@@ -15,7 +15,7 @@
     = yield :page_header
     = yield :navigation unless controller.is_a? HomeController
     #page_container
-      = yield :messages
+      = render :partial => "application/messages"
       %article#page_contents
         = yield
       = yield :page_footer

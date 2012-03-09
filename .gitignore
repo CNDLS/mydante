@@ -6,3 +6,4 @@ tmp/
 config/database.yml
 config/initializers/devise.rb
 config/initializers/omniauth.rb
+config/initializers/setup_mail.rb

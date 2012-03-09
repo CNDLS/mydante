@@ -152,7 +152,7 @@ module GuiHelper
           end
           
           # hidden div that holds the menu
-          haml_tag :div, { :id => "#{menu_name}_menu", :class => "menu" } do
+          haml_tag :ul, { :id => "#{menu_name}_menu", :class => "menu" } do
             menu_items.each do |item|
               haml_tag :li, { :id => "#{menu_name}_menu_item", :class => "menu_item" } do
                 p item.inspect

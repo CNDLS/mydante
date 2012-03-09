@@ -2,3 +2,9 @@
   = "#{@user.name.possessive} Dashboard"
 %p  
   Dashboard
+%p
+  = link_to "greet me", url_for(:action => "greet", :user_id => @user.id)
+%p
+  = image_tag @user.person.avatar.url(:medium)
+%p
+  = link_to "edit me", edit_person_path(:id => @user.id)

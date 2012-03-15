@@ -10,7 +10,7 @@ navigation:
   - !ruby/object:GuiHelper::Menu 
     name: Combray
     items: 
-    - !ruby/object:GuiHelper::MenuItemsFromFilesFactory 
+    - !ruby/object:ProustGuiHelper::MenuItemsFromFilesFactory 
       base_filename: swann_pg
       directory: texts/combray
   - !ruby/object:GuiHelper::Menu 

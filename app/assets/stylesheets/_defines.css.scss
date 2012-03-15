@@ -49,6 +49,11 @@
   background-image: -moz-linear-gradient(top,  $first,  $second);
 }
 
+@mixin letterpress($color){
+  color: $color;
+  text-shadow: darken($color, 50%) 0 -1px 1px, lighten($color, 50%) 0 1px 1px
+}
+
 // std colors
 $text_color: #334;
 $link_color: #900;
@@ -109,7 +114,6 @@ $text_hiliter_yellow_color: #ffff20;
     text-shadow: white 0 0 3px;
   }
 }
-
 
 //
 // workhorse classes

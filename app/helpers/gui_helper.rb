@@ -76,6 +76,11 @@ module GuiHelper
       end
     end
     
+    
+    def label
+      name
+    end
+    
     # this class should also eventually have a method that refers back to the source file
     # for whatever YAML config supplied all the attrs.
     
@@ -83,7 +88,14 @@ module GuiHelper
   
   
   class UI < YAMLConfig
+    include Attrs
     has_attrs :header, :footer, :page_header, :page_footer, :navigation, :contents, :sidebars, :menus, :widgets
+    
+    def self.config_from_class(config)
+      # NOTE naming convention for config classes, so they match UI attrs.
+      config.class.name.split('::').last.underscore
+    end
+    
     
     def build(*args)
       rendering_context = args.shift
@@ -98,7 +110,7 @@ module GuiHelper
           begin
             rendering_context.content_for ui_section do
               if (config.is_a? YAMLConfig)
-                config.name = config.class.name.split('::').last.underscore
+                config.name = self.class.config_from_class(config)
                 config.render(rendering_context)
               else
                 partial_name = ui_section.to_s
@@ -121,21 +133,29 @@ module GuiHelper
 
 
   class Menubar < YAMLConfig
+    include Attrs
     has_attrs :name, :menus
   end
   
   
   class Menu < YAMLConfig
+    include Attrs
     has_attrs :name, :items
     
     def get_items(rendering_context)
-      # if our items member is a factory, use it to generate items.
-      @items.each_with_index do |item, i|
-        if item.is_a? MenuItemFactory
-          @items[i] = item.get_items(rendering_context)
+      @items.collect do |item|
+        case item
+        when GuiHelper::MenuItem
+          item
+        when GuiHelper::MenuItemFactory  
+          item.get_items(rendering_context)
+        when Object::Syck::Object
+          ivars = item.instance_variable_get("@ivars")
+          GuiHelper::MenuItem.new(ivars["name"], ivars["href"])
+        else # hash
+          GuiHelper::MenuItem.new(item["name"], item["href"])
         end
-      end.flatten!
-      @items
+      end.flatten.compact
     end
     
     
@@ -149,16 +169,16 @@ module GuiHelper
           # link to show the menu.
           haml_tag :li, { :id => "#{menu_name}_menu_btn", :class => "menu_btn" } do
             haml_concat link_to(menu_name, null_js)
-          end
           
-          # hidden div that holds the menu
-          haml_tag :ul, { :id => "#{menu_name}_menu", :class => "menu" } do
-            menu_items.each do |item|
-              haml_tag :li, { :id => "#{menu_name}_menu_item", :class => "menu_item" } do
-                p item.inspect
-                haml_concat link_to(item[:name], null_js)
+            # hidden div that holds the menu
+            haml_tag :ul, { :id => "#{menu_name}_menu", :class => "menu" } do
+              menu_items.each do |item|
+                haml_tag :li, { :id => "#{menu_name}_menu_item", :class => "menu_item" } do
+                  haml_concat link_to(item.label, item.href)
+                end
               end
             end
+            
           end
         end
       end
@@ -171,21 +191,44 @@ module GuiHelper
   
   
   class MenuItemsFromFilesFactory < MenuItemFactory
+    include Attrs
     has_attrs :base_filename, :directory
     attr_accessor :files
+    
+    def initialize(base_filename, directory)
+      base_filename = base_filename
+      directory = directory
+    end
     
     def get_items(rendering_context)
       # look into directory
       # make a MenuItem for each file that:
       # - starts with base_filename 
       # - counts upward from 1, or has no number appending onto base_filename.
-      local_directory_path = Rails.root + "app/"+ rendering_context.asset_path(directory).sub("/", "")
-      file_names = Dir.open(local_directory_path).select do |page_filename|
-        page_filename.include?(@base_filename)
+      local_directory_path = Rails.root + "app/"+ rendering_context.asset_path(@directory).sub("/", "")
+      filenames = Dir.open(local_directory_path).select do |item_filename|
+        item_filename.include?(@base_filename)
+      end.compact
+      filenames.collect do |filename|
+        item_from_filename(rendering_context, filename)
       end
-      file_names.collect do |file_name|
-        { :name => file_name, :href => rendering_context.asset_path(directory + file_name) }
-      end
+    end
+    
+    def item_from_filename(rendering_context, filename)
+      # look to see if we have an Asset with this file path. if so, make a nice url to it.
+      # otherwise, point to the file (maybe do some checking of permissions on the directory and/or file?)
+      MenuItem.new(File.basename(filename), rendering_context.asset_path(directory +"/"+ filename))
+    end
+  end
+  
+  
+  class MenuItem < YAMLConfig
+    include Attrs
+    has_attrs :name, :href
+    
+    def initialize(name, href)
+      @name = name
+      @href = href
     end
   end
   

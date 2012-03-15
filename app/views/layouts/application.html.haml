@@ -6,6 +6,8 @@
     %title Proust
     = stylesheet_link_tag("application")
     = javascript_include_tag("application")
+    = javascript_include_tag("menu")
+    %link{ :href => 'http://fonts.googleapis.com/css?family=Muli', :rel => 'stylesheet', :type => 'text/css' }
     = csrf_meta_tags
     = yield :head
 
@@ -19,4 +21,4 @@
       %article#page_contents
         = yield
       = yield :page_footer
-      #page_bottom
+      #page_bottom= link_to html_space(7), null_js, :class => "resizer"

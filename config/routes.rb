@@ -1,10 +1,5 @@
 Proust::Application.routes.draw do
 
-  get "home/index"
-  
-  # match '/auth/:provider/callback', :to => 'authentications#create'
-  # match '/auth/failure', :to => 'authentications#failure'
-
   root :to => "home#index"
   
   resources :people,  :posts, :media, :authentications

@@ -11,21 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120309151014) do
+ActiveRecord::Schema.define(:version => 20120321131950) do
 
   create_table "edits", :force => true do |t|
     t.integer  "subject_id"
     t.string   "subjet_type"
     t.integer  "editor_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "media", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "asset_file_name"
     t.string   "asset_content_type"
     t.integer  "asset_file_size"
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(:version => 20120309151014) do
   create_table "people", :force => true do |t|
     t.string   "first_name",          :default => ""
     t.string   "last_name",           :default => ""
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -47,29 +47,22 @@ ActiveRecord::Schema.define(:version => 20120309151014) do
     t.string   "title"
     t.text     "body"
     t.integer  "type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "email"
     t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.datetime "remember_created_at"
-    t.integer  "failed_attempts",      :default => 0
-    t.string   "unlock_token"
-    t.datetime "locked_at"
-    t.integer  "sign_in_count",        :default => 0
+    t.integer  "sign_in_count",       :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "authentication_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

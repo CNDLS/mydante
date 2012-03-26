@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   # authentication
-  # before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => :index
   
 end

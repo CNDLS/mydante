@@ -34,6 +34,7 @@ gem 'paperclip', '~> 2.7.0'
 gem 'tilt', '~> 1.3.3'
 gem 'validates_email_format_of', '~> 1.5.3'
 
+gem 'therubyracer'
 
 # Use unicorn as the web server
 # gem 'unicorn'

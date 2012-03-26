@@ -26,6 +26,7 @@ gem 'haml', '~> 3.1.4'
 gem 'haml-rails', '~> 0.3.4'
 gem 'kaminari', '~> 0.13.0'
 gem 'mysql', "~> 2.8.1"
+gem "nokogiri", "~> 1.5.2"
 gem 'omniauth', '~> 1.0.3'
 gem "oa-oauth", :require => "omniauth/oauth"
 gem "oa-enterprise", "~> 0.3.2"

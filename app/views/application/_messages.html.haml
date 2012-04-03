@@ -1,8 +1,9 @@
 - if flash.empty?
-  .messages.empty 
+  #messages.empty 
 - else
-  .messages
+  #messages
     - flash.each do |key, message|
-      %h3= key.to_s.capitalize
-      %span= message
-      - flash.discard key
+      %div{ :class => key }
+        %h3= key.to_s.capitalize
+        %span= message
+        - flash.discard key

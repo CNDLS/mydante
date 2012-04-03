@@ -1,54 +1,48 @@
-            home_index GET    /home/index(.:format)                          {:controller=>"home", :action=>"index"}
-                  root        /                                              {:controller=>"home", :action=>"index"}
-                people GET    /people(.:format)                              {:action=>"index", :controller=>"people"}
-                       POST   /people(.:format)                              {:action=>"create", :controller=>"people"}
-            new_person GET    /people/new(.:format)                          {:action=>"new", :controller=>"people"}
-           edit_person GET    /people/:id/edit(.:format)                     {:action=>"edit", :controller=>"people"}
-                person GET    /people/:id(.:format)                          {:action=>"show", :controller=>"people"}
-                       PUT    /people/:id(.:format)                          {:action=>"update", :controller=>"people"}
-                       DELETE /people/:id(.:format)                          {:action=>"destroy", :controller=>"people"}
-                 posts GET    /posts(.:format)                               {:action=>"index", :controller=>"posts"}
-                       POST   /posts(.:format)                               {:action=>"create", :controller=>"posts"}
-              new_post GET    /posts/new(.:format)                           {:action=>"new", :controller=>"posts"}
-             edit_post GET    /posts/:id/edit(.:format)                      {:action=>"edit", :controller=>"posts"}
-                  post GET    /posts/:id(.:format)                           {:action=>"show", :controller=>"posts"}
-                       PUT    /posts/:id(.:format)                           {:action=>"update", :controller=>"posts"}
-                       DELETE /posts/:id(.:format)                           {:action=>"destroy", :controller=>"posts"}
-           media_index GET    /media(.:format)                               {:action=>"index", :controller=>"media"}
-                       POST   /media(.:format)                               {:action=>"create", :controller=>"media"}
-             new_media GET    /media/new(.:format)                           {:action=>"new", :controller=>"media"}
-            edit_media GET    /media/:id/edit(.:format)                      {:action=>"edit", :controller=>"media"}
-                 media GET    /media/:id(.:format)                           {:action=>"show", :controller=>"media"}
-                       PUT    /media/:id(.:format)                           {:action=>"update", :controller=>"media"}
-                       DELETE /media/:id(.:format)                           {:action=>"destroy", :controller=>"media"}
-       authentications GET    /authentications(.:format)                     {:action=>"index", :controller=>"authentications"}
-                       POST   /authentications(.:format)                     {:action=>"create", :controller=>"authentications"}
-    new_authentication GET    /authentications/new(.:format)                 {:action=>"new", :controller=>"authentications"}
-   edit_authentication GET    /authentications/:id/edit(.:format)            {:action=>"edit", :controller=>"authentications"}
-        authentication GET    /authentications/:id(.:format)                 {:action=>"show", :controller=>"authentications"}
-                       PUT    /authentications/:id(.:format)                 {:action=>"update", :controller=>"authentications"}
-                       DELETE /authentications/:id(.:format)                 {:action=>"destroy", :controller=>"authentications"}
-user_omniauth_callback        /users/auth/:action/callback(.:format)         {:action=>/ldap|shibboleth/, :controller=>"omniauth_callbacks"}
-        user_dashboard GET    /users/:user_id/dashboard(.:format)            {:action=>"dashboard", :controller=>"users"}
-            user_greet GET    /users/:user_id/greet(.:format)                {:action=>"greet", :controller=>"users"}
-         user_journals GET    /users/:user_id/journals(.:format)             {:action=>"index", :controller=>"journals"}
-                       POST   /users/:user_id/journals(.:format)             {:action=>"create", :controller=>"journals"}
-      new_user_journal GET    /users/:user_id/journals/new(.:format)         {:action=>"new", :controller=>"journals"}
-     edit_user_journal GET    /users/:user_id/journals/:id/edit(.:format)    {:action=>"edit", :controller=>"journals"}
-          user_journal GET    /users/:user_id/journals/:id(.:format)         {:action=>"show", :controller=>"journals"}
-                       PUT    /users/:user_id/journals/:id(.:format)         {:action=>"update", :controller=>"journals"}
-                       DELETE /users/:user_id/journals/:id(.:format)         {:action=>"destroy", :controller=>"journals"}
-      user_discussions GET    /users/:user_id/discussions(.:format)          {:action=>"index", :controller=>"discussions"}
-                       POST   /users/:user_id/discussions(.:format)          {:action=>"create", :controller=>"discussions"}
-   new_user_discussion GET    /users/:user_id/discussions/new(.:format)      {:action=>"new", :controller=>"discussions"}
-  edit_user_discussion GET    /users/:user_id/discussions/:id/edit(.:format) {:action=>"edit", :controller=>"discussions"}
-       user_discussion GET    /users/:user_id/discussions/:id(.:format)      {:action=>"show", :controller=>"discussions"}
-                       PUT    /users/:user_id/discussions/:id(.:format)      {:action=>"update", :controller=>"discussions"}
-                       DELETE /users/:user_id/discussions/:id(.:format)      {:action=>"destroy", :controller=>"discussions"}
-                 users GET    /users(.:format)                               {:action=>"index", :controller=>"users"}
-                       POST   /users(.:format)                               {:action=>"create", :controller=>"users"}
-              new_user GET    /users/new(.:format)                           {:action=>"new", :controller=>"users"}
-             edit_user GET    /users/:id/edit(.:format)                      {:action=>"edit", :controller=>"users"}
-                  user GET    /users/:id(.:format)                           {:action=>"show", :controller=>"users"}
-                       PUT    /users/:id(.:format)                           {:action=>"update", :controller=>"users"}
-                       DELETE /users/:id(.:format)                           {:action=>"destroy", :controller=>"users"}
+                  root        /                                              home#index
+user_omniauth_callback        /users/auth/:action/callback(.:format)         omniauth_callbacks#(?-mix:ldap|shibboleth)
+                logout        /logout(.:format)                              sessions#destroy {:method=>"delete"}
+        user_dashboard GET    /users/:user_id/dashboard(.:format)            users#dashboard
+            user_greet GET    /users/:user_id/greet(.:format)                users#greet
+         user_journals GET    /users/:user_id/journals(.:format)             journals#index
+                       POST   /users/:user_id/journals(.:format)             journals#create
+      new_user_journal GET    /users/:user_id/journals/new(.:format)         journals#new
+     edit_user_journal GET    /users/:user_id/journals/:id/edit(.:format)    journals#edit
+          user_journal GET    /users/:user_id/journals/:id(.:format)         journals#show
+                       PUT    /users/:user_id/journals/:id(.:format)         journals#update
+                       DELETE /users/:user_id/journals/:id(.:format)         journals#destroy
+      user_annotations GET    /users/:user_id/annotations(.:format)          annotations#index
+                       POST   /users/:user_id/annotations(.:format)          annotations#create
+   new_user_annotation GET    /users/:user_id/annotations/new(.:format)      annotations#new
+  edit_user_annotation GET    /users/:user_id/annotations/:id/edit(.:format) annotations#edit
+       user_annotation GET    /users/:user_id/annotations/:id(.:format)      annotations#show
+                       PUT    /users/:user_id/annotations/:id(.:format)      annotations#update
+                       DELETE /users/:user_id/annotations/:id(.:format)      annotations#destroy
+                  user GET    /users/:id(.:format)                           users#show
+                people GET    /people(.:format)                              people#index
+                       POST   /people(.:format)                              people#create
+            new_person GET    /people/new(.:format)                          people#new
+           edit_person GET    /people/:id/edit(.:format)                     people#edit
+                person GET    /people/:id(.:format)                          people#show
+                       PUT    /people/:id(.:format)                          people#update
+                       DELETE /people/:id(.:format)                          people#destroy
+                 posts GET    /posts(.:format)                               posts#index
+                       POST   /posts(.:format)                               posts#create
+              new_post GET    /posts/new(.:format)                           posts#new
+             edit_post GET    /posts/:id/edit(.:format)                      posts#edit
+                  post GET    /posts/:id(.:format)                           posts#show
+                       PUT    /posts/:id(.:format)                           posts#update
+                       DELETE /posts/:id(.:format)                           posts#destroy
+           media_index GET    /media(.:format)                               media#index
+                       POST   /media(.:format)                               media#create
+             new_media GET    /media/new(.:format)                           media#new
+            edit_media GET    /media/:id/edit(.:format)                      media#edit
+                 media GET    /media/:id(.:format)                           media#show
+                       PUT    /media/:id(.:format)                           media#update
+                       DELETE /media/:id(.:format)                           media#destroy
+           discussions GET    /discussions(.:format)                         discussions#index
+                       POST   /discussions(.:format)                         discussions#create
+        new_discussion GET    /discussions/new(.:format)                     discussions#new
+       edit_discussion GET    /discussions/:id/edit(.:format)                discussions#edit
+            discussion GET    /discussions/:id(.:format)                     discussions#show
+                       PUT    /discussions/:id(.:format)                     discussions#update
+                       DELETE /discussions/:id(.:format)                     discussions#destroy

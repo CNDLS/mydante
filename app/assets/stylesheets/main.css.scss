@@ -93,6 +93,31 @@ body{
     }
   }
   
+  #messages{
+    padding: 0.125em 0.25em;
+      
+    div{
+      @include rounded_corners(0.25em);
+      
+      &.notice{
+        background:{
+          color: rgba(205, 102, 0, 0.75);
+        }
+      }
+      
+      &.alert{
+        background:{
+          color: rgba(230, 0, 0, 0.75);
+        }
+      }
+    }
+    
+    h3{
+      margin: 0.125em;
+      display: inline;
+      font-weight: 600;
+    }
+  }
   
   ul.menubar {
     padding: 0;

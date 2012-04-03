@@ -7,4 +7,4 @@
 %p
   = image_tag @user.person.avatar.url(:medium)
 %p
-  = link_to "edit me", edit_person_path(:id => @user.id)
+  = link_to "edit me", edit_person_path(:id => @user.person.id)

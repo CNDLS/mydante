@@ -1,4 +1,5 @@
 %ul.menubar
   - menus.each do |menu|
     = menu.render(self)
+  %li= link_to "logout", logout_path
   %li.clear

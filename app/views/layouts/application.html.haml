@@ -17,8 +17,8 @@
     = yield :page_header
     = yield :navigation unless controller.is_a? HomeController
     #page_container
-      = render :partial => "application/messages"
       %article#page_contents
+        = render :partial => "application/messages"
         = yield
       = yield :page_footer
       #page_bottom= link_to html_space(7), null_js, :class => "resizer"

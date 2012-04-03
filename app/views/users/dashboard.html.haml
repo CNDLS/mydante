@@ -6,5 +6,6 @@
   = link_to "greet me", url_for(:action => "greet", :user_id => @user.id)
 %p
   = image_tag @user.person.avatar.url(:medium)
+  = image_tag @user.person.avatar.url(:thumb)
 %p
   = link_to "edit me", edit_person_path(:id => @user.person.id)

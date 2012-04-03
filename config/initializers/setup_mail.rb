@@ -1,0 +1,1 @@
+ActionMailer::Base.default_url_options[:host] = "cndls-lux-test.uis.georgetown.edu:3000" 

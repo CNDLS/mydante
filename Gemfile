@@ -28,8 +28,9 @@ gem 'kaminari', '~> 0.13.0'
 gem 'mysql', "~> 2.8.1"
 gem "nokogiri", "~> 1.5.2"
 gem 'omniauth', '~> 1.0.3'
-gem "oa-oauth", :require => "omniauth/oauth"
-gem "oa-enterprise", "~> 0.3.2"
+# gem "oa-oauth", :require => "omniauth/oauth"
+# gem "oa-enterprise", "~> 0.3.2"
+gem "omniauth-ldap", "~> 1.0.2"
 gem "omniauth-shibboleth", "~> 1.0.4"
 gem 'paperclip', '~> 2.7.0'
 gem 'tilt', '~> 1.3.3'

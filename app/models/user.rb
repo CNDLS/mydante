@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   
   def self.uid_from_ldap_auth(auth)
     # omniauth ldap's uid comes back as a string of an array with one element that is a list. oy.
-    uid = eval(auth.uid).first # "[\"uid=<username>, etc\"]" => \"uid=<username>, (etc)\"
+    uid = auth.uid
     uid = eval("%w(#{uid})") # \"uid=<username>, etc\" => [\"uid=<username>\", ...]
     uid.map do |term|
       uid = term.sub("uid=", "")

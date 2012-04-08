@@ -149,9 +149,9 @@ module GuiHelper
           item
         when GuiHelper::MenuItemFactory  
           item.get_items(rendering_context)
-        when Object::Syck::Object
-          ivars = item.instance_variable_get("@ivars")
-          GuiHelper::MenuItem.new(ivars["name"], ivars["href"])
+        # when Object::Syck::Object
+        #   ivars = item.instance_variable_get("@ivars")
+        #   GuiHelper::MenuItem.new(ivars["name"], ivars["href"])
         else # hash
           GuiHelper::MenuItem.new(item["name"], item["href"])
         end

@@ -1,3 +1,3 @@
 %ul.menu
   - items.each do |item|
-    %li.menu_item= link_to item.label, item.href
+    %li.menu_item= item.render

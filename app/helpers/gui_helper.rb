@@ -208,6 +208,14 @@ module GuiHelper
       @href
     end
     
+    def render
+      begin
+        UI.rendering_context.link_to label, href
+      rescue
+        "Unavailable"
+      end
+    end
+    
   end
   
   

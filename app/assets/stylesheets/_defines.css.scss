@@ -54,6 +54,13 @@
   text-shadow: darken($color, 50%) 0 -1px 1px, lighten($color, 50%) 0 1px 1px
 }
 
+@mixin new_anim($name, $duration:3s){
+	-webkit-animation-duration: $duration;  
+	-webkit-animation-name: $name;
+	-moz-animation-duration: $duration;  
+	-moz-animation-name: $name;
+}
+
 // std colors
 $text_color: #334;
 $link_color: #900;

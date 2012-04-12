@@ -2,26 +2,6 @@ module GuiHelper
   # classes for generating the Graphical User Interface from config files.
   # NOTE: can't store rendering_context, as it seems to change during the course of rendering and becomes invalid. just passing it to methods.
   
-  # monkey-patch YAML's object_maker, so we get initialize called.
-  # def YAML.object_maker( obj_class, val )
-  #    if Hash === val
-  #        o = obj_class.allocate
-  #        val.each_pair { |k,v|
-  #            o.instance_variable_set("@#{k}", v)
-  #        }
-  #        o
-  #    else
-  #        raise YAML::Error, "Invalid object explicitly tagged !ruby/Object: " + val.inspect
-  #    end
-  # end
-  # 
-  
-  module RenderingContext
-    def within(rendering_context, &block)
-      rendering_context.instance_eval(&block)
-    end
-  end
-  
   
   # from http://stackoverflow.com/questions/7844457/turning-constructor-arguments-into-instance-variables
   module Attrs
@@ -48,9 +28,6 @@ module GuiHelper
   
   class YAMLConfig
     include Attrs
-    
-    include RenderingContext
-    
     attr_accessor :name, :attrs
     
     
@@ -62,25 +39,6 @@ module GuiHelper
       hash
     end
     
-    
-    def render(rendering_context, partial_name=nil)
-      partial_name = self.name if partial_name.nil?
-      # try rendering an <action>_<partial_name> partial for the current controller.
-      begin
-        controller_name = rendering_context.controller.controller_name
-        action_name = rendering_context.controller.action_name
-        rendering_context.render :partial => "#{controller_name}/#{action_name}_#{partial_name}", :locals => attr_hash
-      rescue
-        # default is to render an application-level partial for each ui section.
-        rendering_context.render :partial => "application/#{partial_name}", :locals => attr_hash
-      end
-    end
-    
-    
-    def label
-      name
-    end
-    
     # this class should also eventually have a method that refers back to the source file
     # for whatever YAML config supplied all the attrs.
     
@@ -90,6 +48,7 @@ module GuiHelper
   class UI < YAMLConfig
     include Attrs
     has_attrs :header, :footer, :page_header, :page_footer, :navigation, :contents, :sidebars, :menus, :widgets
+    cattr_accessor :rendering_context
     
     def self.config_from_class(config)
       # NOTE naming convention for config classes, so they match UI attrs.
@@ -98,7 +57,7 @@ module GuiHelper
     
     
     def build(*args)
-      rendering_context = args.shift
+      UI.rendering_context = args.shift
       args = attrs if args.empty?
       
       args.each do |ui_section|
@@ -108,13 +67,13 @@ module GuiHelper
         ui_section_config.each do |config|
           # get any config variables
           begin
-            rendering_context.content_for ui_section do
-              if (config.is_a? YAMLConfig)
+            UI.rendering_context.content_for ui_section do
+              if (config.is_a? UIElement)
                 config.name = self.class.config_from_class(config)
-                config.render(rendering_context)
+                config.render
               else
                 partial_name = ui_section.to_s
-                render(rendering_context, partial_name)
+                UI.rendering_context.render(partial_name)
               end
             end
             
@@ -130,63 +89,72 @@ module GuiHelper
       end
     end
   end
+  
+
+  class UIElement < YAMLConfig
+    
+    def render(partial_name=nil)
+      partial_name = self.name if partial_name.nil?
+      # try rendering an <action>_<partial_name> partial for the current controller.
+      begin
+        controller_name = UI.rendering_context.controller.controller_name
+        action_name = rendering_context.controller.action_name
+        UI.rendering_context.render :partial => "#{controller_name}/#{action_name}_#{partial_name}", :locals => attr_hash
+      rescue
+        # default is to render an application-level partial for each ui section.
+        UI.rendering_context.render :partial => "application/#{partial_name}", :locals => attr_hash
+      end
+    end
+    
+    
+    def label
+      name
+    end
+    
+    
+    def id
+      name.underscore
+    end
+  end
 
 
-  class Menubar < YAMLConfig
+  class Menubar < UIElement
     include Attrs
     has_attrs :name, :menus
   end
   
   
-  class Menu < YAMLConfig
+  class Menu < UIElement
     include Attrs
     has_attrs :name, :items
     
-    def get_items(rendering_context)
+    def get_items
       @items.collect do |item|
         case item
         when GuiHelper::MenuItem
           item
         when GuiHelper::MenuItemFactory  
-          item.get_items(rendering_context)
-        # when Object::Syck::Object
-        #   ivars = item.instance_variable_get("@ivars")
-        #   GuiHelper::MenuItem.new(ivars["name"], ivars["href"])
+          item.get_items
         else # hash
-          GuiHelper::MenuItem.new(item["name"], item["href"])
+          GuiHelper::MenuItem.new(item.fetch("name", nil), item.fetch("href", nil), item.fetch("path", nil))
         end
       end.flatten.compact
-    end
-    
-    
-    def render(rendering_context, partial_name=nil)
-      menu_name = name
-      menu_items = get_items(rendering_context)
-      
-      within rendering_context do
-        capture_haml do
-          
-          # link to show the menu.
-          haml_tag :li, { :id => "#{menu_name}_menu_btn", :class => "menu_btn" } do
-            haml_concat link_to(menu_name, null_js)
-          
-            # hidden div that holds the menu
-            haml_tag :ul, { :id => "#{menu_name}_menu", :class => "menu" } do
-              menu_items.each do |item|
-                haml_tag :li, { :id => "#{menu_name}_menu_item", :class => "menu_item" } do
-                  haml_concat link_to(item.label, item.href)
-                end
-              end
-            end
-            
-          end
-        end
-      end
     end
   end
   
   
-  class MenuItemFactory < YAMLConfig
+  class MenuItemFactory < UIElement
+    include Attrs
+    has_attrs :item_class
+    
+    def initialize(item_class="MenuItem")
+      item_class = item_class
+    end
+    
+    def item_class
+      @item_class = @item_class.constantize if @item_class.is_a? String
+      @item_class
+    end
   end
   
   
@@ -195,41 +163,58 @@ module GuiHelper
     has_attrs :base_filename, :directory
     attr_accessor :files
     
-    def initialize(base_filename, directory)
+    def initialize(base_filename, directory, item_class)
+      super(item_class)
       base_filename = base_filename
       directory = directory
     end
     
-    def get_items(rendering_context)
+    def get_items
       # look into directory
       # make a MenuItem for each file that:
       # - starts with base_filename 
       # - counts upward from 1, or has no number appending onto base_filename.
-      local_directory_path = Rails.root + "app/"+ rendering_context.asset_path(@directory).sub("/", "")
+      local_directory_path = Rails.root + "app/"+ UI.rendering_context.asset_path(@directory).sub("/", "")
       filenames = Dir.open(local_directory_path).select do |item_filename|
         item_filename.include?(@base_filename)
       end.compact
       filenames.collect do |filename|
-        item_from_filename(rendering_context, filename)
+        item_from_filename(filename)
       end
     end
     
-    def item_from_filename(rendering_context, filename)
+    def item_from_filename(filename)
       # look to see if we have an Asset with this file path. if so, make a nice url to it.
       # otherwise, point to the file (maybe do some checking of permissions on the directory and/or file?)
-      MenuItem.new(File.basename(filename), rendering_context.asset_path(directory +"/"+ filename))
+      item_name = File.basename(filename, ".*").sub(@base_filename, "")
+      media_path = UI.rendering_context.media_path(@directory +"/"+ filename)
+      item_class.new(item_name, media_path)
     end
   end
   
   
-  class MenuItem < YAMLConfig
+  class MenuItem < UIElement
     include Attrs
-    has_attrs :name, :href
+    has_attrs :name, :href, :path
     
-    def initialize(name, href)
+    def initialize(name, href, path=nil)
       @name = name
       @href = href
+      @path = path
     end
+    
+    def href
+      @href ||= UI.rendering_context.send(:eval, @path) unless @path.nil?
+      @href
+    end
+    
   end
   
+  
+  class PageMenuItem < MenuItem
+    def label
+      page_nbr = super.sub("_", "").to_i.to_s
+      "Page #{page_nbr}"
+    end
+  end
 end

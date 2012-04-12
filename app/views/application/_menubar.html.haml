@@ -1,5 +1,6 @@
 %ul.menubar
   - menus.each do |menu|
-    = menu.render(self)
-  %li= link_to "logout", logout_path
+    %li{ :id => "#{menu.id}_menu_btn", :class => "menu_btn" }
+      = link_to(menu.label, null_js)
+      = render :partial => "application/menu", :locals => { :items => menu.get_items }
   %li.clear

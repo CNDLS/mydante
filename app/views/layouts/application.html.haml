@@ -1,5 +1,5 @@
 !!! 5
-- Proust::Application.config.ui.build(self, :header, :page_header, :navigation, :page_footer)
+- Proust::Application.config.ui.build(self, :page_header, :navigation, :page_footer)
 
 %html
   %head
@@ -12,7 +12,8 @@
     = yield :head
 
 %body
-  = yield :header
+  %section#powered_by_cndls
+    = link_to "powered by CNDLS", "http://cndls.georgetown.edu"
   %section#page
     = yield :page_header
     = yield :navigation unless controller.is_a? HomeController

@@ -46,3 +46,4 @@ user_omniauth_callback        /users/auth/:action/callback(.:format)         omn
             discussion GET    /discussions/:id(.:format)                     discussions#show
                        PUT    /discussions/:id(.:format)                     discussions#update
                        DELETE /discussions/:id(.:format)                     discussions#destroy
+                       GET    /media/*path(.:format)                         media#show

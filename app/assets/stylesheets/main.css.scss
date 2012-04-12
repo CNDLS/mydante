@@ -145,7 +145,10 @@ body{
       a{
         text-decoration: none;
         padding: 0 0.75em;
-        font-size: 0.75em;
+				font-size: 1em;
+        line-height: 1.5em;
+				font-weight: lighter;
+				text-transform: capitalize;
         @include letterpress(#444);
 
         &:hover, &:focus{
@@ -158,12 +161,17 @@ body{
         }
       }
       
-      ul.menu{
+      > ul.menu{
         -webkit-padding-start: 0;
         list-style: none;
         text-transform: none;
         position: absolute;
-        display: none;
+        visibility: hidden;
+				opacity: 0;
+				-webkit-transition: opacity 0.25s ease-out;
+				-moz-transition: opacity 0.25s ease-out;
+				-o-transition: opacity 0.25s ease-out;
+				transition: opacity 0.25s ease-out;
         background: {
           color: rgba(0,0,0,0.85);
           image: url(image-path('menu_bottom_gradient.png'));
@@ -181,16 +189,17 @@ body{
         @include rounded_bottom_corners(0.5em);
         @include box_shadow(0, 0.25em, 1em, black);
         
-        li.menu_item.focus a{
-          color: white;
-          background: rgba(0,0,0,0.125);
+        li.menu_item a{
+					font-size:0.875em;
+					line-height:1.875em;
         }
       }
       
       /* li */
       &:hover, &.focus{
-        ul.menu{
-          display: block;
+        > ul.menu{
+          visibility: visible;
+					opacity: 1;
         }
       }
 

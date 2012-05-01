@@ -1,3 +1,5 @@
+require 'haml'
+
 class Media < ActiveRecord::Base
   
   has_many :edits
@@ -6,7 +8,7 @@ class Media < ActiveRecord::Base
     f = File.read("#{Rails.root}/app#{ActionController::Base.helpers.asset_path(file_path)}.xml")
     doc = Nokogiri::XML(f)
     xslt = Nokogiri::XSLT(File.read("#{Rails.root}/app/assets/texts/commedia/canto.xslt"))
-    xslt.transform(doc)
+    m = xslt.transform(doc).to_s
   end
   
 end

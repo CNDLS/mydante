@@ -1,13 +1,12 @@
 !!! 5
-- Proust::Application.config.ui.build(self, :page_header, :navigation, :page_footer)
+- MyDante::Application.config.ui.build(self, :page_header, :navigation, :page_footer)
 
 %html
   %head
-    %title Proust
+    %title MyDante
     = stylesheet_link_tag("application")
     = javascript_include_tag("application")
     = javascript_include_tag("menu")
-    %link{ :href => 'http://fonts.googleapis.com/css?family=Muli', :rel => 'stylesheet', :type => 'text/css' }
     = csrf_meta_tags
     = yield :head
 
@@ -16,10 +15,10 @@
     = link_to "powered by CNDLS", "http://cndls.georgetown.edu"
   %section#page
     = yield :page_header
-    = yield :navigation unless controller.is_a? HomeController
+    = yield :navigation
     #page_container
       %article#page_contents
         = render :partial => "application/messages"
         = yield
       = yield :page_footer
-      #page_bottom= link_to html_space(7), null_js, :class => "resizer"
+      #page_bottom

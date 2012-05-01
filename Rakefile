@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Proust::Application.load_tasks
+MyDante::Application.load_tasks

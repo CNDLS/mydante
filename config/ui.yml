@@ -6,23 +6,23 @@ navigation:
   name: Main 
   menus:
   - !ruby/object:Menu 
-    name: Combray
+    name: Inferno
     items: 
     - !ruby/object:MenuItemsFromFilesFactory 
-      base_filename: swann_pg
-      directory: texts/combray
-      item_class: PageMenuItem
+      base_filename: inf_canto
+      directory: texts/commedia/longfellow/inf
+      item_class: CantoMenuItem
   - !ruby/object:Menu 
-    name: Services
-    items:
-    - name: Journal
-      path: user_journals_path(current_user.id)
-    - name: Discussion Board
-      path: discussions_path
+    name: Purgatorio
+    items: 
+    - !ruby/object:MenuItemsFromFilesFactory 
+      base_filename: purg_canto
+      directory: texts/commedia/longfellow/purg
+      item_class: CantoMenuItem
   - !ruby/object:Menu 
-    name: My Account
-    items:
-    - name: Dashboard
-      path: user_dashboard_path(current_user.id)
-    - name: Sign Out
-      path: signout_path
+    name: Paradiso
+    items: 
+    - !ruby/object:MenuItemsFromFilesFactory 
+      base_filename: par_canto
+      directory: texts/commedia/longfellow/par
+      item_class: CantoMenuItem

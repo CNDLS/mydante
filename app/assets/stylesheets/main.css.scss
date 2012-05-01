@@ -6,8 +6,7 @@
 body{
   margin: -0.75em 0 0 0;
   text-align: center;
-  font-family: 'Muli', sans-serif;
-  font-weight: bold;
+  font-family: 'Verdana', sans-serif;
   overflow{
     x: hidden;
     y: scroll;
@@ -17,7 +16,7 @@ body{
     color: transparent;
     image: url(image-path('background.jpg'));
     position: top left;
-    repeat: repeat-x;
+    repeat: repeat;
     overflow: scroll;
   }
   
@@ -68,16 +67,16 @@ body{
 
 #page{
   padding: 1.25em 0 0 0;
-  width: 62.5em;
+  width: 64em;
   margin: 0 auto;
   text-align: left;
-  border-left: 1px solid #888;
-  border-right: 1px solid #888;
-  border-bottom: 1px solid #555;
+  border-left: 1px solid #333;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #222;
   background: {
     color: #eee;
   }
-  @include rounded_bottom_corners(1em);
+  @include rounded_bottom_corners(0.25em);
   @include straight_down_shadow;
   
 
@@ -86,10 +85,15 @@ body{
       width: 100%;
       height: 13.5em;
       background: {
-        image: url(image-path('proust_banner.jpg'));
+        image: url(image-path('banners/dante1.jpg'));
         size: cover;
       }
       border-bottom: 0.5625em solid black;
+      
+      .titlebar{
+        position: relative;
+        top: 116px;
+      }
     }
   }
   
@@ -124,7 +128,7 @@ body{
     margin: 0;
     border-bottom: 0.125em solid #222;
     background: {
-      color: #555;
+      color: #502401;
       image: url(image-path('menubar/menubar_brushed_bg.png'));
       repeat: repeat;
       position: top;
@@ -147,9 +151,9 @@ body{
         padding: 0 0.75em;
 				font-size: 1em;
         line-height: 1.5em;
-				font-weight: lighter;
+				font-weight: normal;
 				text-transform: capitalize;
-        @include letterpress(#444);
+				color: black;
 
         &:hover, &:focus{
           color: white;
@@ -174,13 +178,11 @@ body{
 				transition: opacity 0.25s ease-out;
         background: {
           color: rgba(0,0,0,0.85);
-          image: url(image-path('menu_bottom_gradient.png'));
-          repeat: repeat-x;
-          position: bottom;
+          image: url(image-path('menubar/menu_bg.jpg'));
+          repeat: repeat;
         }
         min-width: 150px;
         border: 2px solid #111;
-        border-top: none;
         text-shadow: none;
         font-size: 1em;
         margin: 0;
@@ -192,6 +194,12 @@ body{
         li.menu_item a{
 					font-size:0.875em;
 					line-height:1.875em;
+					color: rgba(255, 255, 255, 0.7);
+					
+          /* a */
+          &:hover, &.focus{
+    				color: white;
+  				}
         }
       }
       
@@ -213,11 +221,11 @@ body{
   #page_container{
     background: {
       color: transparent;
-      image: url(image-path('proust_page_bg.jpg'));
+      image: url(image-path('parchment.jpg'));
       position: top;
-      repeat: repeat-x;
+      repeat: repeat-y;
     }  
-    @include rounded_bottom_corners(1.25em);
+    @include rounded_bottom_corners(0.25em);
   
     #page_contents {
       padding: 0.1em 1em;
@@ -242,8 +250,8 @@ body{
   
     #page_bottom{
       height: 1.75em;
-      @include gradient(rgba(0,0,0,0), rgba(0,0,0,0.35));
-      @include rounded_bottom_corners(0.75em);
+      @include gradient(rgba(0,0,0,0), rgba(0,0,0,0.15));
+      @include rounded_bottom_corners(0.175em);
       text-align: center;
       
       a.resizer{

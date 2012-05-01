@@ -1,3 +1,5 @@
+require 'roman'
+
 module GuiHelper
   # classes for generating the Graphical User Interface from config files.
   # NOTE: can't store rendering_context, as it seems to change during the course of rendering and becomes invalid. just passing it to methods.
@@ -61,7 +63,7 @@ module GuiHelper
       args = attrs if args.empty?
       
       args.each do |ui_section|
-        ui_section_config = Proust::Application.config.ui.send(ui_section)
+        ui_section_config = MyDante::Application.config.ui.send(ui_section)
         ui_section_config = [ui_section_config] unless ui_section_config.is_a? Array
         
         ui_section_config.each do |config|
@@ -219,10 +221,10 @@ module GuiHelper
   end
   
   
-  class PageMenuItem < MenuItem
+  class CantoMenuItem < MenuItem
     def label
-      page_nbr = super.sub("_", "").to_i.to_s
-      "Page #{page_nbr}"
+      canto_nbr = super.sub("_", "").to_i
+      "Canto #{canto_nbr.roman}"
     end
   end
 end

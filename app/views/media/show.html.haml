@@ -1,5 +1,18 @@
 - require "roman"
-- add_stylesheet :media
+- content_for :head do
+  = stylesheet_link_tag("media")
 
 %h1= "Canto #{@page_nbr.roman}"
-= @media.html_safe
+%table.poem
+  - @english_stanzas.each_with_index do |stanza_node, i|
+    %tr
+      %td.line_nbr.unselectable= (i * 3) + 1
+      %td.stanza
+        - Media.get_lines(stanza_node).each do |line_node|
+          %p= line_node.inner_text.html_safe
+          
+      - italian_stanza_node = @italian_stanzas[i]
+      %td.stanza.unselectable
+        - Media.get_lines(italian_stanza_node).children.each do |line_node|
+          %p= line_node.inner_text.html_safe
+      %td.margin.unselectable

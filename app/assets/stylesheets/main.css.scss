@@ -4,7 +4,7 @@
 /* sizes are based on a font-size of 16px, so 0.0625em = 1px */
 
 body{
-  margin: -0.75em 0 0 0;
+  margin: -0.75em 0 1.5em 0;
   text-align: center;
   font-family: 'Verdana', sans-serif;
   overflow{
@@ -239,7 +239,7 @@ body{
   
   
     #page_footer{
-      border-top: 0.125em dashed #aaa;
+      border-top: 0.125em dashed #666;
       padding-top: 1.25em;
       font-size: 0.5em;
       margin: 2em;

@@ -14,9 +14,11 @@ table.poem{
     padding: 0.25em 0;
   
     &.line_nbr{
+      font-size: 0.75em;
+      color: #333;
       vertical-align: top;
       text-align: right;
-      padding-right: 0.375em;
+      padding: 0.5em;
     }
     
     &.stanza{

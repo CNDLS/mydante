@@ -41,5 +41,7 @@ module MyDante
 
     # Enable the asset pipeline
     config.assets.enabled = true
+    config.assets.paths << "#{Rails.root}/app/assets/swfs"
+    
   end
 end

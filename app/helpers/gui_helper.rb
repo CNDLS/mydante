@@ -176,7 +176,7 @@ module GuiHelper
       # make a MenuItem for each file that:
       # - starts with base_filename 
       # - counts upward from 1, or has no number appending onto base_filename.
-      local_directory_path = Rails.root + "app/"+ UI.rendering_context.asset_path(@directory).sub("/", "")
+      local_directory_path = Rails.root + "app/assets"+ @directory
       filenames = Dir.open(local_directory_path).select do |item_filename|
         item_filename.include?(@base_filename)
       end.compact

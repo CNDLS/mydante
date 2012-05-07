@@ -177,9 +177,11 @@ module GuiHelper
       # - starts with base_filename 
       # - counts upward from 1, or has no number appending onto base_filename.
       local_directory_path = Rails.root + "app/assets"+ @directory
-      filenames = Dir.open(local_directory_path).sort_by{ |f| File.basename(f) }.select do |item_filename|
+      filenames = Dir.entries(local_directory_path).select do |f|
+        item_filename = File.join(Dir.pwd, f)
         item_filename.include?(@base_filename)
       end.compact
+      filenames.sort_by{ |f| File.basename(f) }
       filenames.collect do |filename|
         item_from_filename(filename)
       end

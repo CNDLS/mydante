@@ -181,7 +181,7 @@ module GuiHelper
         item_filename = File.join(Dir.pwd, f)
         item_filename.include?(@base_filename)
       end.compact
-      filenames.sort_by{ |f| File.basename(f) }
+      filenames.sort_by!{ |f| File.basename(f) }
       filenames.collect do |filename|
         item_from_filename(filename)
       end

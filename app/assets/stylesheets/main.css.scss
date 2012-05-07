@@ -50,16 +50,27 @@ body{
       position: top left;
       repeat: repeat-x;
     }
-	  display: block;
+    visibility: hidden;
+		opacity: 0;
+		-webkit-transition: opacity 0.25s ease-out;
+		-moz-transition: opacity 0.25s ease-out;
+		-o-transition: opacity 0.25s ease-out;
+		transition: opacity 0.25s ease-out;
 	  height: 50px;
 	  width: 198px;
 	  position: absolute;
 	  top: 0;
 	  left: 800px;
 	  text-indent: -9999px;
-	}
-}
+	}  
 
+  &:hover, &:focus{
+    > a{
+      visibility: visible;
+  		opacity: 1;
+    }
+  }
+}
 
 //
 // page
@@ -85,7 +96,6 @@ body{
       width: 100%;
       height: 13.5em;
       background: {
-        image: url(image-path('banners/dante1.jpg'));
         size: cover;
       }
       border-bottom: 0.5625em solid black;

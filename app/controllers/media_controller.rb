@@ -21,6 +21,8 @@ class MediaController < ApplicationController
       when "par"
         @book_name = "Paradiso"
       end
+      
+      @banner_options = { :book => @book, :page_nbr => @page_nbr }
     end
   end
 end

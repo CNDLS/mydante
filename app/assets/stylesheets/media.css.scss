@@ -2,11 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-h1{
+#page #page_container #page_contents h1{
   text-align: center;
+  font-family: 'Jim Nightshade', cursive;
+  font-size: 3em;
+  margin: 0.375em 0 0 0;
+  text-shadow: rgba(0,0,0,0.25) 0 0.075em 0.075em;
 }
 
-
+#audio_flowplayer{
+  display:block;
+  width:100%;
+  height:24px;
+  padding-bottom: 0.75em;
+}
 
 table.poem{
   
@@ -30,3 +39,4 @@ table.poem{
     }
   }
 }
+

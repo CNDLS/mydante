@@ -12,6 +12,15 @@ class MediaController < ApplicationController
       @italian_stanzas = Canto.get_stanzas(italian_version)
       
       @book, @page_nbr  = Canto.get_file_info(file_path)
+      @book_name = ""
+      case @book
+      when "inf"
+        @book_name = "Inferno"
+      when "purg"
+        @book_name = "Purgatorio"
+      when "par"
+        @book_name = "Paradiso"
+      end
     end
   end
 end

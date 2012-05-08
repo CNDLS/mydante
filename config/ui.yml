@@ -6,6 +6,19 @@ navigation:
   name: Main 
   menus:
   - !ruby/object:Menu 
+    name: Guides
+    items:
+    - name: Getting Started
+      path: guide_path(1)
+    - name: Four Themes
+      path: guide_path(2)
+    - name: Four Dantes
+      path: guide_path(3)
+    - name: Contemplative Reading Practice
+      path: guide_path(4)
+    - name: Dante is for Everyone
+      path: guide_path(5)
+  - !ruby/object:Menu 
     name: Inferno
     items: 
     - !ruby/object:MenuItemsFromFilesFactory 

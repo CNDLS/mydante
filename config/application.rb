@@ -41,7 +41,12 @@ module MyDante
 
     # Enable the asset pipeline
     config.assets.enabled = true
-    config.assets.paths << "#{Rails.root}/app/assets/swfs"
+    config.assets.paths << Rails.root.join("app", "assets", "flowplayer")
+    config.assets.paths << Rails.root.join("app", "assets", "guides")
+    config.assets.paths << Rails.root.join("app", "assets", "swfs")
+    config.assets.paths << Rails.root.join("app", "assets", "texts")
+    config.assets.paths << Rails.root.join("app", "assets", "videos")
+    
     
   end
 end

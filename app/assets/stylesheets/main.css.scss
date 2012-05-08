@@ -77,7 +77,8 @@ body{
 //
 
 #page{
-  padding: 1.25em 0 0 0;
+  font-size: 16px;
+  padding: 1.125em 0 0 0;
   width: 64em;
   margin: 0 auto;
   text-align: left;
@@ -93,7 +94,6 @@ body{
 
   #page_header{
     #banner{
-      width: 100%;
       height: 13.5em;
       background: {
         size: cover;
@@ -258,7 +258,7 @@ body{
       padding: 0.1em 1em;
    
       h1{
-        margin: none;
+        margin: 0.75em 0;
         font-size: 1.5em;
         font-weight: normal;
       }

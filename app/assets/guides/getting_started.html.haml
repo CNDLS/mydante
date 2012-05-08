@@ -1,0 +1,27 @@
+- content_for :head do
+  = stylesheet_link_tag("guides")
+  = stylesheet_link_tag("jquery.fancybox")
+  = javascript_include_tag("guides")
+  = javascript_include_tag("jquery.tools.min")
+  = javascript_include_tag("jquery-1.7.2.min")
+  = javascript_include_tag("jquery.fancybox")
+  = javascript_include_tag("flowplayer-3.2.9.min")
+
+%h1 Getting Started
+  
+#guides_chooser
+:javascript
+  var api = flashembed("guides_chooser", { "src":"#{asset_path('guides_chooser.swf')}", "wmode":"transparent" });
+
+#getting_started
+  %p MyDante offers a unique approach to reading Dante’s Divine Comedy. To begin a thematic exploration of MyDante’s philosophy, watch the “Getting Started” videos on this page. Begin with the “Nel Mezzo” video in the center. You may want to return to these videos throughout your study of the poem.
+
+  / %p These themes are explored further in the following text commentaries:
+  / %ul
+  /   %li= link_to "Four Themes", guide_path(2)
+  /   %li= link_to "Four Dantes", guide_path(3)
+  /   %li= link_to "Contemplative Reading Practice", guide_path(4)
+  /   %li= link_to "Dante is for Everyone", guide_path(5)
+    
+%a#viewer{ :href => "#player" }
+#player

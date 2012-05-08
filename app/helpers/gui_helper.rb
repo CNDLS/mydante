@@ -110,7 +110,7 @@ module GuiHelper
     
     
     def label
-      name
+      name.titleize
     end
     
     
@@ -149,11 +149,12 @@ module GuiHelper
     include Attrs
     has_attrs :item_class
     
-    def initialize(item_class="MenuItem")
-      item_class = item_class
+    def initialize(item_class)
+      @item_class = item_class
     end
     
     def item_class
+      @item_class = MenuItem if @item_class.nil?
       @item_class = @item_class.constantize if @item_class.is_a? String
       @item_class
     end
@@ -179,7 +180,7 @@ module GuiHelper
       local_directory_path = Rails.root + "app/assets"+ @directory
       filenames = Dir.entries(local_directory_path).select do |f|
         item_filename = File.join(Dir.pwd, f)
-        item_filename.include?(@base_filename)
+        @base_filename ? item_filename.include?(@base_filename) : (f[0] != ".")
       end.compact
       filenames.sort_by!{ |f| File.basename(f) }
       filenames.collect do |filename|
@@ -190,7 +191,9 @@ module GuiHelper
     def item_from_filename(filename)
       # look to see if we have an Asset with this file path. if so, make a nice url to it.
       # otherwise, point to the file (maybe do some checking of permissions on the directory and/or file?)
-      item_name = File.basename(filename, ".*").sub(@base_filename, "")
+      item_name = File.basename(filename, ".*")
+      item_name.sub!(/\..*/, "")
+      item_name.sub!(@base_filename, "") if @base_filename
       media_path = UI.rendering_context.media_path(@directory +"/"+ filename)
       item_class.new(item_name, media_path)
     end

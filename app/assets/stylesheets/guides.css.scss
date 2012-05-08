@@ -1,0 +1,28 @@
+// Place all the styles related to the guides controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "defines";
+
+#guides_chooser{
+  margin: 0 auto;
+  width: 720px;
+  height: 536px;
+  border: 1px solid black;
+  @include straight_down_shadow();
+}
+
+#getting_started{
+  margin: 2em auto;
+  width: 675px;
+}
+
+#viewer{
+  display:none;
+}
+
+#player{
+  display:none;
+  width:480px;
+  height:320px;
+}

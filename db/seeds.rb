@@ -10,5 +10,6 @@ Guide.create([
   { title: 'Four Themes', path: 'four_themes.html.haml' },
   { title: 'Four Dantes', path: 'four_dantes.html.haml' },
   { title: 'Contemplative Reading Practice', path: 'contemplative_reading_practice.html.haml' },
-  { title: 'Dante is for Everyone', path: 'dante_is_for_everyone.html.haml' }
+  { title: 'Dante is for Everyone', path: 'dante_is_for_everyone.html.haml' },
+  { title: 'Inferno Introduction', path: 'inferno_intro.html.haml' }
 ])

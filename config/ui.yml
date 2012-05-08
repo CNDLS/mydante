@@ -21,6 +21,8 @@ navigation:
   - !ruby/object:Menu 
     name: Inferno
     items: 
+    - name: Inferno Intro
+      path: guide_path(6)
     - !ruby/object:MenuItemsFromFilesFactory 
       base_filename: inf_canto
       directory: texts/commedia/longfellow/inf

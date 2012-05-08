@@ -135,6 +135,10 @@ $text_hiliter_yellow_color: #ffff20;
 .clear{
   clear: both;
 }
+.center{
+  margin: 0 auto;
+  display: table;
+}
 .unselectable{
   -webkit-touch-callout: none;
   -webkit-user-select: none;

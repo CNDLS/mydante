@@ -13,3 +13,4 @@ Guide.create([
   { title: 'Dante is for Everyone', path: 'dante_is_for_everyone.html.haml' },
   { title: 'Inferno Introduction', path: 'inferno_intro.html.haml' }
 ])
+Source.create({ title: "The Dore Illustrations for Dante's Divine Comedy", license: "Used by permission" })

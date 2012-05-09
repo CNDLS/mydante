@@ -41,3 +41,8 @@ navigation:
       base_filename: par_canto
       directory: texts/commedia/longfellow/par
       item_class: CantoMenuItem
+  - !ruby/object:Menu 
+    name: Media
+    items:
+    - name: The Dore Illustrations for Dante's Divine Comedy
+      path: source_path(1)

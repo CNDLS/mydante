@@ -149,3 +149,8 @@ $text_hiliter_yellow_color: #ffff20;
   user-select: none;
   cursor: default;
 }
+
+.framed{
+  border: 1px solid black;
+  @include straight_down_shadow
+}

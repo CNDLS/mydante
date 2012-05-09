@@ -28,13 +28,6 @@ edit_user_annotation GET    /users/:user_id/annotations/:id/edit(.:format) annot
                 post GET    /posts/:id(.:format)                           posts#show
                      PUT    /posts/:id(.:format)                           posts#update
                      DELETE /posts/:id(.:format)                           posts#destroy
-         media_index GET    /media(.:format)                               media#index
-                     POST   /media(.:format)                               media#create
-           new_media GET    /media/new(.:format)                           media#new
-          edit_media GET    /media/:id/edit(.:format)                      media#edit
-               media GET    /media/:id(.:format)                           media#show
-                     PUT    /media/:id(.:format)                           media#update
-                     DELETE /media/:id(.:format)                           media#destroy
          discussions GET    /discussions(.:format)                         discussions#index
                      POST   /discussions(.:format)                         discussions#create
       new_discussion GET    /discussions/new(.:format)                     discussions#new
@@ -49,4 +42,18 @@ edit_user_annotation GET    /users/:user_id/annotations/:id/edit(.:format) annot
                guide GET    /guides/:id(.:format)                          guides#show
                      PUT    /guides/:id(.:format)                          guides#update
                      DELETE /guides/:id(.:format)                          guides#destroy
-                     GET    /media/*file_path.:file_format(.:format)       media#show
+             sources GET    /sources(.:format)                             sources#index
+                     POST   /sources(.:format)                             sources#create
+          new_source GET    /sources/new(.:format)                         sources#new
+         edit_source GET    /sources/:id/edit(.:format)                    sources#edit
+              source GET    /sources/:id(.:format)                         sources#show
+                     PUT    /sources/:id(.:format)                         sources#update
+                     DELETE /sources/:id(.:format)                         sources#destroy
+              images GET    /images(.:format)                              images#index
+                     POST   /images(.:format)                              images#create
+           new_image GET    /images/new(.:format)                          images#new
+          edit_image GET    /images/:id/edit(.:format)                     images#edit
+               image GET    /images/:id(.:format)                          images#show
+                     PUT    /images/:id(.:format)                          images#update
+                     DELETE /images/:id(.:format)                          images#destroy
+               media GET    /media/*file_path(.:format)                    media#show

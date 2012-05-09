@@ -142,8 +142,10 @@ body{
       image: url(image-path('menubar/menubar_brushed_bg.png'));
       repeat: repeat;
       position: top;
-    } 
-    @include small_straight_down_shadow;
+    }
+    z-index: 100;
+    position: relative;
+    @include straight_down_shadow;
     list-style: none;
     text-transform: lowercase;
     text-align: left;
@@ -266,7 +268,7 @@ body{
   
   
     #page_footer{
-      border-top: 0.125em dashed #666;
+      border-top: 1px dashed #666;
       padding-top: 1.25em;
       font-size: 0.5em;
       margin: 2em;

@@ -1,5 +1,3 @@
-require 'haml'
-
 class Media < ActiveRecord::Base
   
   has_many :edits

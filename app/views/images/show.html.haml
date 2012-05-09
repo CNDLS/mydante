@@ -1,0 +1,11 @@
+%p#notice= notice
+
+.center
+  - begin
+    = image_tag(asset_path(@image.path(:large)), :class => :framed)
+  - rescue
+    = image_tag(asset_path(@image.path()), :class => :framed)
+  %p.center
+    = link_to 'Edit', edit_image_path(@image)
+    \|
+    = link_to 'Back', images_path

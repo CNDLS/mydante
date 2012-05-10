@@ -12,13 +12,14 @@ body{
     y: scroll;
   }
   
-  background: {
-    color: transparent;
-    image: url(image-path('background.jpg'));
-    position: top left;
-    repeat: repeat;
-    overflow: scroll;
-  }
+  background: #191919; /* Old browsers */
+  background: -moz-linear-gradient(top,  #191919 0%, #333333 48%, #191919 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#191919), color-stop(48%,#333333), color-stop(100%,#191919)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #191919 0%,#333333 48%,#191919 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #191919 0%,#333333 48%,#191919 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #191919 0%,#333333 48%,#191919 100%); /* IE10+ */
+  background: linear-gradient(top,  #191919 0%,#333333 48%,#191919 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#191919', endColorstr='#191919',GradientType=0 ); /* IE6-9 */
   
   a{    
     color: $link_color;
@@ -89,7 +90,7 @@ body{
     color: #eee;
   }
   @include rounded_bottom_corners(0.25em);
-  @include straight_down_shadow;
+  @include box_shadow(0, 5px, 50px, black);
   
 
   #page_header{

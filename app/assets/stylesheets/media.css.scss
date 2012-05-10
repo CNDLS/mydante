@@ -59,8 +59,10 @@ table.media{
       display: none;
       position: absolute;
       background-color: #db8;
-      width: 100px;
-      padding: 3px;
+      width: 9.5em;
+      padding: 0.125em 0;
+      margin: 0.25em;
+      @include rounded_corners(0.25em);
     }
      
     &:hover, &:focus{

@@ -1,6 +1,6 @@
 %p#notice= notice
 
-%h2= "Media from '#{@source.title}'"
+%h2= "Images from '#{@source.title}'"
 
 %table.media
   - @media.each_with_index do |media_asset, i|
@@ -9,13 +9,13 @@
     - case media_asset
     - when Image
       %td
+        = link_to image_tag(asset_path(media_asset.path(:thumb)), :class => :framed), media_asset
         .about
           = media_asset.title
-        = link_to image_tag(asset_path(media_asset.path(:thumb)), :class => :framed), media_asset
-        .controls
-          = link_to 'Edit', edit_image_path(media_asset)
-          = link_separator
-          = link_to 'Destroy', media_asset, :confirm => 'Are you sure?', :method => :delete
+          .controls
+            = link_to 'Edit', edit_image_path(media_asset)
+            = link_separator
+            = link_to 'Destroy', media_asset, :confirm => 'Are you sure?', :method => :delete
 
 %br
 

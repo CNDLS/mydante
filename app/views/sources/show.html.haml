@@ -1,25 +1,26 @@
 %p#notice= notice
 
-%h1= "Media from '#{@source.title}'"
+%h2= "Media from '#{@source.title}'"
 
-%table
-  %tr
-    %th Thumbnail
-    %th
-    %th
-    %th
-
-  - @images.each do |image|
-    %tr
-      %td= image_tag(asset_path(image.path(:thumb)), :class => :framed)
-      %td= link_to 'Show', image
-      %td= link_to 'Edit', edit_image_path(image)
-      %td= link_to 'Destroy', image, :confirm => 'Are you sure?', :method => :delete
+%table.media
+  - @media.each_with_index do |media_asset, i|
+    - if i % 7 == 0
+      %tr
+    - case media_asset
+    - when Image
+      %td
+        .about
+          = media_asset.title
+        = link_to image_tag(asset_path(media_asset.path(:thumb)), :class => :framed), media_asset
+        .controls
+          = link_to 'Edit', edit_image_path(media_asset)
+          = link_separator
+          = link_to 'Destroy', media_asset, :confirm => 'Are you sure?', :method => :delete
 
 %br
 
-= link_to 'New Image', new_image_path
-
-= link_to 'Edit', edit_source_path(@source)
-\|
-= link_to 'Back', sources_path
+/ = link_to 'New Image', new_image_path
+/ 
+/ = link_to 'Edit', edit_source_path(@source)
+/ \|
+/ = link_to 'Back', sources_path

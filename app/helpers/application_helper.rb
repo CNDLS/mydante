@@ -11,4 +11,8 @@ module ApplicationHelper
     end
     spaces.html_safe
   end
+  
+  def link_separator
+    "&middot;".html_safe
+  end
 end

@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// application-wide styles
+@import "defines";
+
+
 #page #page_container #page_contents h1{
   text-align: center;
   font-family: 'Jim Nightshade', cursive;
@@ -40,3 +44,40 @@ table.poem{
   }
 }
 
+table.media{
+  width: 100%;
+  
+  td{
+    width: 12.5%;
+    text-align: center;
+    font-size: 0.875em;
+    vertical-align: bottom;
+    padding: 2em 0;
+    @include rounded_corners(0.5em);
+    
+    > .about{
+      display: none;
+      position: absolute;
+      background-color: #db8;
+      width: 100px;
+      padding: 3px;
+    }
+     
+    &:hover, &:focus{
+      background-color: rgba(255,255,255,0.4);
+      @include box_shadow(0, 0, 1em, rgba(255,255,255,0.4));
+      
+      > .about{
+        display: block;
+      }
+      
+      > .controls{
+        
+        > a{
+          visibility: visible;
+      		opacity: 1;
+        }
+      }
+    }
+  }
+}

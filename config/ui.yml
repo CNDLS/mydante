@@ -44,5 +44,5 @@ navigation:
   - !ruby/object:Menu 
     name: Media
     items:
-    - name: The Dore Illustrations for Dante's Divine Comedy
+    - name: Images
       path: source_path(1)

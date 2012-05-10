@@ -56,4 +56,4 @@ edit_user_annotation GET    /users/:user_id/annotations/:id/edit(.:format) annot
                image GET    /images/:id(.:format)                          images#show
                      PUT    /images/:id(.:format)                          images#update
                      DELETE /images/:id(.:format)                          images#destroy
-               media GET    /media/*file_path.*file_format(.:format)       media#show
+               media GET    /media/*file_path(.:format)                    media#show

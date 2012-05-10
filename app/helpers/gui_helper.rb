@@ -227,6 +227,14 @@ module GuiHelper
   
   
   class CantoMenuItem < MenuItem
+    
+    def initialize(name, href, path=nil)
+      @name = name
+      @href = href.sub(".xml", ".html")
+      @path = path
+    end
+    
+    
     def label
       canto_nbr = super.sub("_", "").to_i
       "Canto #{canto_nbr.roman}"

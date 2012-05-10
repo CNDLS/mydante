@@ -10,6 +10,6 @@ MyDante::Application.routes.draw do
   end
   resources :people, :posts, :discussions, :guides, :sources, :images
   
-  get 'media/*file_path.*file_format' => 'media#show', :as => :media
+  get 'media/*file_path' => 'media#show', :as => :media
 
 end

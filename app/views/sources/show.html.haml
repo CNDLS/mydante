@@ -12,10 +12,10 @@
         = link_to image_tag(asset_path(media_asset.path(:thumb)), :class => :framed), media_asset
         .about
           = media_asset.title
-          .controls
-            = link_to 'Edit', edit_image_path(media_asset)
-            = link_separator
-            = link_to 'Destroy', media_asset, :confirm => 'Are you sure?', :method => :delete
+          / .controls
+          /   = link_to 'Edit', edit_image_path(media_asset)
+          /   = link_separator
+          /   = link_to 'Destroy', media_asset, :confirm => 'Are you sure?', :method => :delete
 
 %br
 

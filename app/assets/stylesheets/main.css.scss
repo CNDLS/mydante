@@ -34,7 +34,7 @@ body{
 /* powered by cndls section doesn't scale. use px sizes. */
 #powered_by_cndls{
   background: {
-    image: url(image-path('cndls_frame-bg.png'));
+    image: url(asset-path('cndls_frame-bg.png', 'image'));
     position: top left;
     repeat: repeat-x;
   }
@@ -47,7 +47,7 @@ body{
 
 	a{
 	  background: {
-	    image: url(image-path('cndls_frame-button3.png'));
+	    image: url(asset-path('cndls_frame-button3.png', 'image'));
       position: top left;
       repeat: repeat-x;
     }
@@ -140,7 +140,7 @@ body{
     border-bottom: 0.125em solid #222;
     background: {
       color: #502401;
-      image: url(image-path('menubar/menubar_brushed_bg.png'));
+      image: url(asset-path('menubar/menubar_brushed_bg.png', 'image'));
       repeat: repeat;
       position: top;
     }
@@ -200,7 +200,7 @@ body{
 				transition: opacity 0.25s ease-out;
         background: {
           color: rgba(0,0,0,0.85);
-          image: url(image-path('menubar/menu_bg.jpg'));
+          image: url(asset-path('menubar/menu_bg.jpg', 'image'));
           repeat: repeat;
         }
         min-width: 150px;
@@ -225,7 +225,7 @@ body{
 						color: rgba(255, 255, 255, 0.7);
 						
             &:before{
-              content: url(image-path('menubar/menu_dot.png'));
+              content: url(asset-path('menubar/menu_dot.png', 'image'));
               padding-right: 0.75em;
             }
             
@@ -251,7 +251,7 @@ body{
   #page_container{
     background: {
       color: transparent;
-      image: url(image-path('parchment.jpg'));
+      image: url(asset-path('parchment.jpg', 'image'));
       position: top;
       repeat: repeat-y;
     }  
@@ -289,7 +289,7 @@ body{
         width: 56px;
         margin: 0 auto;
         background: {
-          image: url(image-path('resize.png'));
+          image: url(asset-path('resize.png', 'image'));
           repeat: repeat-x;
           position: bottom;
         }

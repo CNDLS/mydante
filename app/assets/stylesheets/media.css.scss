@@ -54,6 +54,12 @@ table.media{
     vertical-align: bottom;
     padding: 2em 0;
     @include rounded_corners(0.5em);
+
+  }
+}
+
+table.media, table.poem{
+  td{
     
     > .about{
       display: none;

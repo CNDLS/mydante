@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120509112453) do
+ActiveRecord::Schema.define(:version => 20120511172538) do
 
   create_table "edits", :force => true do |t|
     t.integer  "subject_id"
@@ -60,6 +60,16 @@ ActiveRecord::Schema.define(:version => 20120509112453) do
     t.string   "license"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "text_selections", :force => true do |t|
+    t.integer  "book_id"
+    t.integer  "page_nbr"
+    t.integer  "line_nbr"
+    t.integer  "user_id"
+    t.integer  "media_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

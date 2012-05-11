@@ -1,17 +1,21 @@
 - require "roman"
-- audio_path = asset_path("commedia/original/#{@book}/#{@book}_canto#{'%02d' % @page_nbr}.mp3")
+- audio_path = asset_path("commedia/original/#{@book_abbr}/#{@book_abbr}_canto#{'%02d' % @page_nbr}.mp3")
 - content_for :head do
   = stylesheet_link_tag("media")
+  = stylesheet_link_tag("jquery.fancybox")
+  = javascript_include_tag("jquery-1.7.2.min")
+  = javascript_include_tag("jquery.fancybox")
   
 
-%h1="#{@book_name}, Canto #{@page_nbr.roman}"
+%h1="#{@book.title}, Canto #{@page_nbr.roman}"
 #audio_flowplayer
 
   
 %table.poem
   - @english_stanzas.each_with_index do |stanza_node, i|
+    - first_line_of_stanza_nbr = (i * 3) + 1
     %tr
-      %td.line_nbr.unselectable= (i * 3) + 1
+      %td.line_nbr.unselectable= first_line_of_stanza_nbr
       
       %td.stanza
         - Canto.get_lines(stanza_node).each do |line_node|
@@ -22,6 +26,11 @@
           %p= line_node.inner_text.html_safe
           
       %td.margin.unselectable
+        - @image_placements.by_stanza(first_line_of_stanza_nbr).each do |image_placement|
+          - media_asset = image_placement.media
+          = link_to image_tag(asset_path(media_asset.path(:thumb)), :class => :framed), media_asset, :class => :fancybox
+          .about
+            = media_asset.title
 
 
 :javascript

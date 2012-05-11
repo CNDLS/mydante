@@ -1,5 +1,4 @@
 class Media < ActiveRecord::Base
-  
   has_many :edits
   
   def self.get_xml(file_path)

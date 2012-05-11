@@ -2,9 +2,9 @@ class Canto < Media
   
   
   def self.get_file_info(file_path)
-    book = file_path.split("/")[-2]
+    book_abbr = file_path.split("/")[-2]
     page_nbr = file_path.split("/").last.sub(/.*_canto/, "").to_i
-    [book, page_nbr]
+    [book_abbr, page_nbr]
   end
 
   def self.get_stanzas(xml_doc)

@@ -11,18 +11,11 @@ class MediaController < ApplicationController
         italian_version = Media.get_xml(italian_version_path)
         @italian_stanzas = Canto.get_stanzas(italian_version)
     
-        @book, @page_nbr  = Canto.get_file_info(file_path)
-        @book_name = ""
-        case @book
-        when "inf"
-          @book_name = "Inferno"
-        when "purg"
-          @book_name = "Purgatorio"
-        when "par"
-          @book_name = "Paradiso"
-        end
+        @book_abbr, @page_nbr  = Canto.get_file_info(file_path)
+        @book = Book.find_by_path("commedia/longfellow/#{@book_abbr}")
+        @image_placements = TextSelection.by_page(@book.id, @page_nbr)
     
-        @banner_options = { :book => @book, :page_nbr => @page_nbr }
+        @banner_options = { :book => @book_abbr, :page_nbr => @page_nbr }
         render :template => "media/show.html.haml"
       end
     end

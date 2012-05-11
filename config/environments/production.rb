@@ -13,7 +13,6 @@ MyDante::Application.configure do
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
-  config.assets.prefix = "/mydante/assets"
 
   # Specifies the header that your server uses for sending files
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
@@ -51,4 +50,8 @@ MyDante::Application.configure do
   config.active_support.deprecation = :notify
   
   config.action_mailer.default_url_options = { :host => 'mydante.georgetown.edu' }
+  
+  # part of fix for sass-rails compilation bug
+  # https://github.com/rails/sass-rails/issues/17
+  ENV['RAILS_RELATIVE_URL_ROOT'] = '/mydante'
 end

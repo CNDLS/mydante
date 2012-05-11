@@ -13,7 +13,6 @@ MyDante::Application.configure do
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
-  config.assets.prefix = "/assets"
 
   # Specifies the header that your server uses for sending files
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
@@ -50,5 +49,5 @@ MyDante::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
-  config.action_mailer.default_url_options = { :host => 'proust.georgetown.edu' }
+  config.action_mailer.default_url_options = { :host => 'mydante.georgetown.edu' }
 end

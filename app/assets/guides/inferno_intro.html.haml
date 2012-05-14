@@ -1,25 +1,28 @@
+- content_for :head do
+  :javascript
+    $(function() {
+      $f("inf_intro_player", {
+        src: "#{asset_path('flowplayer-3.2.10.swf')}",
+        wmode: "transparent"
+        }, {
+        // fullscreen button not needed here
+        plugins: {
+            controls: {
+              backgroundColor:'transparent',
+              backgroundGradient:'none',
+              fullscreen: false,
+              height: 24,
+              autoHide: false
+            }
+        },
+
+        clip: {
+            url: "#{asset_path('inf_intro.m4v')}",
+            autoPlay: false
+        }
+      });
+    });
+  
 %h1 Dante's Journey as Poetry
 .center
   #inf_intro_player
-
-:javascript
-  $f("inf_intro_player", {
-    src: "#{asset_path('flowplayer-3.2.10.swf')}",
-    wmode: "transparent"
-    }, {
-    // fullscreen button not needed here
-    plugins: {
-        controls: {
-          backgroundColor:'transparent',
-          backgroundGradient:'none',
-          fullscreen: false,
-          height: 24,
-          autoHide: false
-        }
-    },
-
-    clip: {
-        url: "#{asset_path('inf_intro.m4v')}",
-        autoPlay: false
-    }
-  });

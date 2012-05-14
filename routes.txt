@@ -49,6 +49,7 @@ edit_user_annotation GET    /users/:user_id/annotations/:id/edit(.:format) annot
               source GET    /sources/:id(.:format)                         sources#show
                      PUT    /sources/:id(.:format)                         sources#update
                      DELETE /sources/:id(.:format)                         sources#destroy
+        image_inline GET    /images/:image_id/inline(.:format)             images#inline
               images GET    /images(.:format)                              images#index
                      POST   /images(.:format)                              images#create
            new_image GET    /images/new(.:format)                          images#new

@@ -6,6 +6,53 @@
   = javascript_include_tag("jquery-1.7.2.min")
   = javascript_include_tag("jquery.fancybox")
   
+  :javascript
+  
+    function unpack(obj, delimiter){
+      if (obj == undefined){ return "undefined" };
+    	var report = new Array();
+    	for (var m in obj){
+    		var member = obj[m];
+    		if (!(member instanceof Function)){
+    			if (member != undefined){ report.push(m +":"+ member); }
+    		}
+    	}
+    	delimiter = delimiter || "\t";
+    	return report.join(delimiter);
+    }
+  
+  
+    $(function() {
+      $f("audio_flowplayer", {
+        src: "#{asset_path('flowplayer-3.2.10.swf')}",
+        wmode: "transparent"
+        }, {
+        // fullscreen button not needed here
+        plugins: {
+            controls: {
+              backgroundColor:'transparent',
+              backgroundGradient:'none',
+              fullscreen: false,
+              height: 24,
+              autoHide: false
+            }
+        },
+
+        clip: {
+            url: "#{audio_path}",
+            autoPlay: false
+        }
+      });
+      
+      $(".fancybox").fancybox({
+        'type':'ajax',
+        'scrolling':'no',
+        'beforeShow': function() {
+            $.fancybox.current.width = $(this.element).data("imageWidth");
+            $.fancybox.current.height = $(this.element).data("imageHeight") + 54;
+          }
+        });
+     });
 
 %h1="#{@book.title}, Canto #{@page_nbr.roman}"
 #audio_flowplayer
@@ -28,29 +75,6 @@
       %td.margin.unselectable
         - @image_placements.by_stanza(first_line_of_stanza_nbr).each do |image_placement|
           - media_asset = image_placement.media
-          = link_to image_tag(asset_path(media_asset.path(:thumb)), :class => :framed), media_asset, :class => :fancybox
+          = link_to image_tag(asset_path(media_asset.path(:thumb)), :class => :framed), image_inline_path(media_asset.id), :class => :fancybox, :data => { :image_width => media_asset.geometry[:width], :image_height => media_asset.geometry[:height] }
           .about
             = media_asset.title
-
-
-:javascript
-  $f("audio_flowplayer", {
-    src: "#{asset_path('flowplayer-3.2.10.swf')}",
-    wmode: "transparent"
-    }, {
-    // fullscreen button not needed here
-    plugins: {
-        controls: {
-          backgroundColor:'transparent',
-          backgroundGradient:'none',
-          fullscreen: false,
-          height: 24,
-          autoHide: false
-        }
-    },
-
-    clip: {
-        url: "#{audio_path}",
-        autoPlay: false
-    }
-  });

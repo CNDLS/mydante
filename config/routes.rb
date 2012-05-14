@@ -8,7 +8,11 @@ MyDante::Application.routes.draw do
     # get :dashboard
     resources :journals, :annotations
   end
-  resources :people, :posts, :discussions, :guides, :sources, :images
+  resources :people, :posts, :discussions, :guides, :sources
+  
+  resources :images do
+    get :inline
+  end
   
   get 'media/*file_path' => 'media#show', :as => :media
 

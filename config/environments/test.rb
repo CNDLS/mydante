@@ -38,7 +38,4 @@ MyDante::Application.configure do
   
   config.action_mailer.default_url_options = { :host => 'cndls-lux-test.uis.georgetown.edu:3000' }
   
-  # part of fix for sass-rails compilation bug
-  # https://github.com/rails/sass-rails/issues/17
-  ENV['RAILS_RELATIVE_URL_ROOT'] = '/'
 end

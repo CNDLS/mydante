@@ -40,5 +40,5 @@ MyDante::Application.configure do
   
   # part of fix for sass-rails compilation bug
   # https://github.com/rails/sass-rails/issues/17
-  ENV['RAILS_RELATIVE_URL_ROOT'] = '/mydante'
+  ENV['RAILS_RELATIVE_URL_ROOT'] = '/'
 end

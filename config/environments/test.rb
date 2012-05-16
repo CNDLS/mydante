@@ -12,7 +12,7 @@ MyDante::Application.configure do
   config.static_cache_control = "public, max-age=3600"
   
   # test environment current runs the app inside of a prefix. modify asset paths for this.
-  config.assets.prefix = "mydante/public/assets"
+  config.assets.prefix = "mydante/assets"
 
   # Log error messages when you accidentally call methods on nil
   config.whiny_nils = true

@@ -8,8 +8,4 @@ class Media < ActiveRecord::Base
     # xslt.transform(doc)
   end
   
-  def path(variant=nil)
-    @path
-  end
-  
 end

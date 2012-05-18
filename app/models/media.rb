@@ -9,6 +9,7 @@ class Media < ActiveRecord::Base
   end
   
   def path(variant=nil)
+    @path
   end
   
 end

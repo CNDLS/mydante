@@ -1,6 +1,6 @@
 class Guide < Media
   
   def path(variant=nil)
-    "guides/" + super(variant)
+    "guides/" + (super(variant) || "")
   end
 end

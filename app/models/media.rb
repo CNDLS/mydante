@@ -9,7 +9,7 @@ class Media < ActiveRecord::Base
   end
   
   def path(variant=nil)
-    @path
+    @path ||= ""
   end
   
 end
